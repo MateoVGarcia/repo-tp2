@@ -2,69 +2,77 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
-        <title>CONTACTANOS</title> 
+        <title>CONTACTANOS</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
-    <body>
-    
+<body>
+<!--Navegacion-->
     <nav>
-<ul>
-<li><a href="index.html">INICIO</a> </li>
-<li><a href="productos.html">PRODUCTOS</a> </li>
-<li><a href="consejos.html">CONSEJOS PARA LA SALUD</a> </li>
-<li><a href="serviciospaseo.html">SERVICIOS DE PASEOS</a> </li>
-<li><a href="sucursales.html">SUCURSALES</a> </li>
-<li><a href="contactos.html">CONTACTANOS</a> </li>
-</ul>
-</nav>
-    
-        <h1>Contáctenos</h1>
-        <p style="margin: 0">3915 Av. General Belgrano, 388-4999999</p>
-        <p style="margin: 0">Lunes a viernes: 9:00 a.m a 8:00 p.m</p>
-        <p style="margin: 0">Sábado a domingo: 9:00 a.m a 12:30 p.m</p>
+        <ul class="imain-nav">
+            <li class="imain-nav-item"><a href="index.html">INICIO</a> </li>
+            <li class="imain-nav-item"><a href="productos.html">PRODUCTOS</a> </li>
+            <li class="imain-nav-item"><a href="consejos.html">CONSEJOS PARA LA SALUD</a> </li>
+            <li class="imain-nav-item"><a href="serviciospaseo.html">SERVICIOS DE PASEOS</a> </li>
+            <li class="imain-nav-item"><a href="sucursales.html">SUCURSALES</a> </li>
+            <li class="imain-nav-item"><a href="contactos.html">CONTACTANOS</a> </li>
+        </ul>
+    </nav>
 
-        <a href="contactos@mail.com.ar">contactos@mail.com.ar</a>
 
-        <div>
-            <ul>
-                <li><a href="">Facebook</a></li>
-                <li><a href="">Instagram</a></li>
-                <li><a href="">Twitter</a></li>
-            </ul>
+<!--Cuerpo de contactenos-->
+    <div class="container-contacto">
+        <div id="contactenos">
+            <h1>Contáctenos</h1>
+        </div>
+      
+    <div class="row-contacto">
+        <div class="column-contacto direccion">
+            <p>3915 Av. General Belgrano, 388-4999999</p>
+            <p>Lunes a viernes: 9:00 a.m a 8:00 p.m</p>
+            <p>Sábado a domingo: 9:00 a.m a 12:30 p.m</p>
+
+            <div class="imagen-contacto">
+                <img src="contacto.png" alt="Imagen de persona con telefono">
+            </div>
+
+
+            <div class="redes-sociales">
+                <a href="contactos@mail.com.ar">contactos@mail.com.ar</a>
+                <ul>
+                    <li><a href="https://es-la.facebook.com/" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="https://twitter.com/?lang=es" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
         </div>
 
-        <hr>
 
-       
-        <form action="#" method="post">
-            <div style="margin-bottom: 10px;">
+        <div class="column-contacto">
+            <form action="#" method="post">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
-            </div>
+                <input type="text" id="nombre" class="inputs" name="nombre" placeholder="Ingrese su nombre" required>
                 
-            <div style="margin-bottom: 10px;">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Ingrese un email válido" required>
-            </div>
+                <input type="email" id="email" class="inputs" name="email" placeholder="Ingrese un email válido" required>
               
-            <div style="margin-bottom: 10px;">
                 <label for="ciudad">Ciudad</label>
-                <input type="text" id="ciudad" name="ciudad" placeholder="Ingrese su ciudad" required>
-            </div>
+                <input type="text" id="ciudad" class="inputs" name="ciudad" placeholder="Ingrese su ciudad" required>
+            
               
-            <div style="margin-bottom: 10px;">
                 <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5" style="width: 30%;" required></textarea>
-            </div>
+                <textarea id="mensaje" name="mensaje" class="inputs" rows="5" required></textarea>
 
-            <div style="margin-bottom: 10px;">
-                <input type="submit" value="Enviar">
-            </div>
-        </form>
-        
- <footer>
-<p>Copyright 2023 - <b>DonCacho PetShop</b> - Diseñado por Grupo 22 – Jujuy – República Argentina </p>
-</footer>
+                <input type="submit" class="contacto-enviar" value="Enviar">
+            </form>
+        </div>
+        </div>
+    </div>
+ 
 
-    </body>
+    <footer class="index_footer">
+        <p>Copyright 2023 - <b>DonCacho PetShop</b> - Diseñado por Grupo 22 – Jujuy – República Argentina </p>
+    </footer>
+
+</body>
 </html>
