@@ -1,32 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
     <head>
         <meta charset="utf-8">
         <title>CONTACTANOS</title>
-<link rel="stylesheet" href="../static/css/estilos.css">
+		<link rel="stylesheet" th:href="@{css/estilos.css}">
     </head>
+
 
 <body>
 
-
-<!--Cuerpo de contactenos-->
-    <div class="container-contacto">
-  <header>
-          <div id="contactenos">
-            <h1>CONTÁCTENOS</h1>
-        </div>
-  <!--Navegacion-->
-    <nav>
-        <ul class="imain-nav">
-            <li class="imain-nav-item"><a href="index.html">INICIO</a> </li>
-            <li class="imain-nav-item"><a href="productos.html">PRODUCTOS</a> </li>
-            <li class="imain-nav-item"><a href="consejos.html">CONSEJOS PARA LA SALUD</a> </li>
-            <li class="imain-nav-item"><a href="serviciospaseo.html">SERVICIOS DE PASEOS</a> </li>
-            <li class="imain-nav-item"><a href="sucursales.html">SUCURSALES</a> </li>
-            <li class="imain-nav-item"><a href="contactos.html">CONTACTANOS</a> </li>
-        </ul>
-    </nav>
-  </header>
+	<header th:replace="~{layouts/header :: header}"></header>
+	
+	
+	<div class="container-contacto">
+  		<div id="contactenos">
+			<h1>CONTÁCTENOS</h1>
+		</div>
 
       
     <div class="row-contacto">
@@ -36,7 +25,7 @@
             <p>Sábado a domingo: 9:00 a.m a 12:30 p.m</p>
 
             <div class="imagen-contacto">
-                <img src="../static/images/contacto.png" alt="Imagen de persona con telefono">
+                <img th:src="@{images/contacto.png}" alt="Imagen de un perro y un gato">
             </div>
 
 
@@ -52,30 +41,34 @@
 
 
         <div class="column-contacto">
-            <form action="#" method="post">
+            <form th:if="${mensaje eq null}" th:action="@{/contactos}" method="post" th:object="${formContacto}">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" class="inputs" name="nombre" placeholder="Ingrese su nombre" required>
+                <input type="text" id="nombre" class="inputs" th:field="*{nombre}" placeholder="Ingrese su nombre" required>
                 
                 <label for="email">Email</label>
-                <input type="email" id="email" class="inputs" name="email" placeholder="Ingrese un email válido" required>
+                <input type="email" id="email" class="inputs" th:field="*{email}" placeholder="Ingrese un email válido" required>
               
                 <label for="ciudad">Ciudad</label>
-                <input type="text" id="ciudad" class="inputs" name="ciudad" placeholder="Ingrese su ciudad" required>
+                <input type="text" id="ciudad" class="inputs" th:field="*{ciudad}" placeholder="Ingrese su ciudad" required>
             
               
                 <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" class="inputs" rows="5" required></textarea>
+                <textarea id="mensaje" th:field="*{mensaje}" class="inputs" rows="5" required></textarea>
 
                 <input type="submit" class="contacto-enviar" value="Enviar">
+                
             </form>
+            
+              <!-- Mensaje de agradecimiento -->
+              <div class="mensaje-formulario">
+              		<p  th:if="${mensaje}" th:text="${mensaje}"></p>
+              </div>
         </div>
         </div>
     </div>
  
 
-    <footer class="index_footer">
-        <p>Copyright 2023 - <b>DonCacho PetShop</b> - Diseñado por Grupo 22 – Jujuy – República Argentina </p>
-    </footer>
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
 
 </body>
 </html>
