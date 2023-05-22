@@ -6,15 +6,16 @@
 <body>
 	<header class="main_header"> 
 		<h1> DonCacho PetShop</h1>
-		<img th:src="@{images\petshoplogo.jpg}" alt="PetShop" title="DonCacho PetShop Logo">
+		<img th:src="@{/images\petshoplogo.jpg}" alt="PetShop" title="DonCacho PetShop Logo">
 		<nav class="index_nav">
 			<ul class="imain-nav">
 				<li class="imain-nav-item"><a th:href="@{/inicio}">INICIO</a> </li>
-				<li class="imain-nav-item"><a href="productos.html">PRODUCTOS</a> </li>
+				<li class="imain-nav-item"><a th:href="@{/productos}">PRODUCTOS</a> </li>
 				<li class="imain-nav-item"><a th:href="@{/consejos}">CONSEJOS PARA LA SALUD</a> </li>
-				<li class="imain-nav-item"><a th:href="@{paseo}">SERVICIOS DE PASEOS</a> </li>
-				<li class="imain-nav-item"><a th:href="@{sucursales}">SUCURSALES</a> </li>
-				<li class="imain-nav-item"><a href="contactos.html">CONTACTANOS</a> </li>
+				<li class="imain-nav-item"><a th:href="@{/paseo}">SERVICIOS DE PASEOS</a> </li>
+				<li class="imain-nav-item"><a th:href="@{/sucursales}">SUCURSALES</a> </li>
+				<li class="imain-nav-item"><a th:href="@{/contactos}">CONTACTANOS</a> </li>
+
 			</ul>
 		</nav>
 	</header>
