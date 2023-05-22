@@ -47,7 +47,7 @@ public class ProductosController {
 	    }
 
 	    model.addAttribute("productos", productoEncontrado);
-	    model.addAttribute("Editar", edicion);
+	    model.addAttribute("EDITAR", edicion);
 
 	    return "nuevo_producto";
 	}
