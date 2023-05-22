@@ -8,13 +8,13 @@
 
 <title>Don Cacho Petshop</title>
 
-<link rel="stylesheet" th:href="@{css/estilos.css}">
+<link rel="stylesheet" th:href="@{/css/estilos.css}">
 
 </head>
 
 
 
-<header th:replace="~{layouts/header :: header}"></header>
+<header th:replace="~{/layouts/header :: header}"></header>
 
 
 
@@ -30,7 +30,7 @@
 
 <section>
 
-<img alt="gato dentro de una cama" th:src="@{images/cuchitagato.jpeg}" width="300" title="Gato en su cama">
+<img alt="gato dentro de una cama" th:src="@{/images/cuchitagato.jpeg}" width="300" title="Gato en su cama">
 <p><b><i>  </i></b></p>
 <h1>Camita para michi.</h1>
 
@@ -44,7 +44,7 @@
 
 <section>
 
-<img alt="Perro acostado en su cama"  th:src="@{images/perrocucha.jpg}" width="300" title="Perro en su cama">
+<img alt="Perro acostado en su cama"  th:src="@{/images/perrocucha.jpg}" width="300" title="Perro en su cama">
 <p><b><i>  </i></b></p>
 <h1>Cama para perros.</h1>
 
@@ -58,7 +58,7 @@
 
 <section>
 
-<img alt="bolsa de alimento para perros"  th:src="@{images/perrocucha.jpg}" width="300" title="Bolsa de alimento pedigree 20kg para perro">
+<img alt="bolsa de alimento para perros"  th:src="@{/images/alimentoperro1.jpg}" width="300" title="Bolsa de alimento pedigree 20kg para perro">
 <p><b><i>  </i></b></p>
 <h1>Alimento Pedigree 20Kg</h1>
 
@@ -72,7 +72,7 @@
 
 <section>
 
-<img alt="Bolsa de alimento para gatos" th:src="@{images/alimentogato1.jpg}" width="300" title="Bolsa de alimento Sabrositos Mix para gato 20kg">
+<img alt="Bolsa de alimento para gatos" th:src="@{/images/alimentogato1.jpg}" width="300" title="Bolsa de alimento Sabrositos Mix para gato 20kg">
 <p><b><i>  </i></b></p>
 <h1>Alimento Sabrositos Mix 20Kg</h1>
 
@@ -86,7 +86,7 @@
 
 <section>
 
-<img alt="Gato jugando con su rascador" th:src="@{images/juguetegato.jpg}" width="300" title="Gato con su rascador">
+<img alt="Gato jugando con su rascador" th:src="@{/images/juguetegato.jpg}" width="300" title="Gato con su rascador">
 <p><b><i>  </i></b></p>
 <h1>Rascador</h1>
 
@@ -100,7 +100,7 @@
 
 <section>
 
-<img alt="perro mascando su mascador" th:src="@{images/jugueteperro.jpg}" width="300" title="Perro con su mascador">
+<img alt="perro mascando su mascador" th:src="@{/images/jugueteperro.jpg}" width="300" title="Perro con su mascador">
 <p><b><i>  </i></b></p>
 <h1>Mascador y limpiador de dientes</h1>
 
@@ -116,9 +116,8 @@
 
 
 
-<div>
-
-	<a th:ref="@{productos/listado}">Nuevo Producto</a>
+<section id="contenido_producto">
+<a href="@{productos/nuevo}">Nuevo Producto</a>
 
 <table>
 
@@ -156,15 +155,17 @@
 
         <a href="#">EDITAR</a>
 
-        <a href="#">Eliminar</a>
+        <a href="@{/productos/eliminar}">Eliminar</a>
 
         </td>
 
     </tr>
 
 </table>
+</section>
+	
 
-</div>
+
 
 
 
@@ -182,5 +183,7 @@
 
 
 
-<footer th:replace="~{layouts/footer :: footer}"></footer>
-
+<footer class="productos_footer">
+<p>Copyright 2023 - <b>DonCacho PetShop</b> - Diseñado por Grupo 22 – Jujuy – República Argentina </p>
+</footer>
+</html>
