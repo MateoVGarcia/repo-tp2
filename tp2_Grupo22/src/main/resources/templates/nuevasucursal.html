@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es" class="html_sucursales">
+
+<head>
+	
+	<meta charset="UTF-8">
+	<title>Servicio de Paseos</title>
+	<link rel="stylesheet" th:href="@{css/estilos.css}">
+	
+</head>
+
+<body class="body_sucursales-paseo">
+		
+		<header th:replace="~{layouts/header :: header}"></header>	
+	
+			<section id="content">
+				<h3>Nueva Sucursal</h3><br>
+				
+				<form th:action="@{/sucursal/guardar}" th:objet="${sucursal}" method="post">
+					
+					<label for="nombre">Nombre</label>
+					<input type="text" id="nombre" name="sucursal_nombre" th:field="*{nombre}"><br>
+					<label for="direccion">Direccion</label>
+					<input type="text" id="direccion" name="sucursal_direccion" th:field="{direccion}"><br>
+					<label for="fecha">Fecha de inicio</label>
+					<input type="date" id="fecha" name="sucursal_fecha" th:field="*{fechaInicio}"><br>
+					<label for="email" id="email">Email</label>
+					<input type="text" id="email" name="sucursal_email" th:field="*{email}"><br>
+					<label for="telefono">Telefono</label> 
+					<input type="text" id="telefono" name="sucursal_telefono" th:field="*{telefono}">
+					<br>
+					<p><input type="submit" class="button" value="Guardar"></p>					
+					
+				</form>
+				
+			</section>
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+	
+</body>
+</html>   
