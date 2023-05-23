@@ -13,11 +13,10 @@
 		
 		<header th:replace="~{layouts/header :: header}"></header>	
 	
-			<section id="content">
+			<section id="content"
 				<h3>Nueva Sucursal</h3><br>
 				
 				<form th:action="@{/sucursal/guardar}" th:objet="${sucursal}" method="post">
-					
 					<label for="nombre">Nombre</label>
 					<input type="text" id="nombre" name="sucursal_nombre" th:field="*{nombre}"><br>
 					<label for="direccion">Direccion</label>
@@ -32,9 +31,7 @@
 					<p><input type="submit" class="button" value="Guardar"></p>					
 					
 				</form>
-				
-			</section>
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
 	
 </body>
-</html>   
+</html>
