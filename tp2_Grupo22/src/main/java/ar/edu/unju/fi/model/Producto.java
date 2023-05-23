@@ -9,6 +9,9 @@ public class Producto {
 	private String categoria;
 	private int descuento;
 	
+	public Producto() {
+     
+    }
 	
 	//Contructor parametrizado
 	public Producto(String nombre, int codigo, double precio, String categoria, int descuento) {
@@ -18,6 +21,8 @@ public class Producto {
         this.categoria = categoria;
         this.descuento = descuento;
     }
+	
+	
 
 
 

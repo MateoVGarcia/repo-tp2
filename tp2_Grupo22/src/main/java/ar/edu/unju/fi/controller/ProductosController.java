@@ -7,67 +7,75 @@ import ar.edu.unju.fi.model.Producto;
 import ar.edu.unju.fi.listaProducto.*;
 
 @Controller
-@RequestMapping("/productos")
 public class ProductosController {
 	
 	listaproductos Listaproductos = new listaproductos();
 	
-	@GetMapping("/listado")
+	
+	@GetMapping("/productos/listado")
 	public String getListaproductospage(Model model) {
 		model.addAttribute("productosn", listaproductos.getProductos());
 		return "productos";
 	}
 	
-	@GetMapping("/nuevo")
+	
+	
+	@GetMapping("/productos/nuevo")
 	public String getNuevoProductopage(Model model){
 		boolean edicion = false;
-		model.addAttribute("producto", new Producto(null, 0, 0, null, 0));
-		model.addAttribute("Editar", edicion);
+		model.addAttribute("producto", new Producto());
+		model.addAttribute("edicion", edicion);
 		return "nuevo_producto";
 	}
 	
-	@PostMapping("/guardar")
-	public ModelAndView getGuardarproductopage(@ModelAttribute("producto")Producto productos) {
-	ModelAndView modelView = new ModelAndView("productos");
-	listaproductos.getProductos().add(productos);
-	modelView.addObject("productos", listaproductos.getProductos());
+	
+	@PostMapping("/productos/guardar")
+	public ModelAndView getGuardarproductopage(@ModelAttribute("productos")Producto producto) {
+		ModelAndView modelView = new ModelAndView("redirect:/productos/listado");
+		listaproductos.getProductos().add(producto);
+		modelView.addObject("productos", listaproductos.getProductos());
 	return modelView;
 	}
 	
-	@GetMapping("/modificar/{nombre}")
+	
+	
+	@GetMapping("/productos/modificar/{nombre}")
 	public String getModificarProductoPage(Model model, @PathVariable(value = "nombre") String nombre) {
 	    Producto productoEncontrado = null;
 	    boolean edicion = true;
 
-	    for (Producto produ : listaproductos.getProductos()) {
-	        if (produ.getNombre().equals(nombre)) {
-	            productoEncontrado = produ;
+	    for (Producto Produ : listaproductos.getProductos()) {
+	        if (Produ.getNombre().equals(nombre)) {
+	            productoEncontrado = Produ;
 	            break;
 	        }
 	    }
 
-	    model.addAttribute("productos", productoEncontrado);
-	    model.addAttribute("EDITAR", edicion);
+	    model.addAttribute("producto", productoEncontrado);
+	    model.addAttribute("edicion", edicion);
 
 	    return "nuevo_producto";
 	}
 
-	@PostMapping("/modificar")
-	public String modificarProducto(@ModelAttribute("producto") Producto productos) {
-	    for (Producto produ : listaproductos.getProductos()) {
-	        if (produ.getNombre().equals(productos.getNombre())) {
-	            produ.setCodigo(productos.getCodigo());
-	            produ.setPrecio(productos.getPrecio());
-	            produ.setCategoria(productos.getCategoria());
-	            produ.setDescuento(productos.getDescuento());
-	            break;
+	
+	
+	@PostMapping("/productos/modificar")
+	public String modificarProducto(@ModelAttribute("producto") Producto producto) {
+	    for (Producto Produ : listaproductos.getProductos()) {
+	        if (Produ.getNombre().equals(producto.getNombre())) {
+	            Produ.setCodigo(producto.getCodigo());
+	            Produ.setPrecio(producto.getPrecio());
+	            Produ.setCategoria(producto.getCategoria());
+	            Produ.setDescuento(producto.getDescuento());
 	        }
 	    }
 
 	    return "redirect:/productos/listado";
 	}
 	
-	@GetMapping("/eliminar/{nombre}")
+	
+	
+	@GetMapping("/productos/eliminar/{nombre}")
 	public String eliminarPrtoducto(@PathVariable(value = "nombre") String nombre) {
 	    for (Producto produ : listaproductos.getProductos()) {
 	        if (produ.getNombre().equals(nombre)) {
