@@ -1,6 +1,8 @@
 package ar.edu.unju.fi.model;
 
 
+
+
 public class Producto {
 	
 	private String nombre;
@@ -9,6 +11,10 @@ public class Producto {
 	private String categoria;
 	private int descuento;
 	
+	//Constructor sin parametros
+	public Producto() {
+		
+	}
 	
 	//Contructor parametrizado
 	public Producto(String nombre, int codigo, double precio, String categoria, int descuento) {

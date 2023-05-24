@@ -1,15 +1,19 @@
 package ar.edu.unju.fi.listaProducto;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.ArrayList;
 import ar.edu.unju.fi.model.Producto;
 
 
 public class listaproductos {
 	
-	private static List<Producto> productos;
+	private static List<Producto> productos = new ArrayList<>();
 	
-	public listaproductos() {
-		productos = new ArrayList<Producto>();
+ public listaproductos () {
+
 		productos.add(new Producto("Mascador y limpiador de dientes", 0323, 6000, "Juguete", 30));
 		productos.add(new Producto("Camita para michi", 3490, 30000, "mueble", 0));
 		productos.add(new Producto("Cama para perros", 34879, 10000, "mueble", 20));
@@ -23,8 +27,7 @@ public class listaproductos {
 		return productos;
 	}
 	
-	public void setProductos(List<Producto> productos) {
-		listaproductos.productos = productos;
+	public static void setProductos(Producto producto) {
+		productos.add(producto);
 	}
-
 }

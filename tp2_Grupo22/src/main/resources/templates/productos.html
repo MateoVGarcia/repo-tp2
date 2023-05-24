@@ -117,7 +117,8 @@
 
 
 <section id="contenido_producto">
-<a href="@{productos/nuevo}">Nuevo Producto</a>
+ <a th:href="@{/productos/nuevo}">Agregar producto</a>
+
 
 <table>
 
@@ -137,7 +138,7 @@
 
     </tr>
 
-    <tr th:each="Produ : ${productosn}">
+    <tr th:each="Produ : ${productos}">
 
         <td th:text="${Produ.nombre}"></td>
 
@@ -153,9 +154,15 @@
 
           <td>
 
+
+        
         <a href="#">EDITAR</a>
 
-        <a href="@{/productos/eliminar}">Eliminar</a>
+  
+      <form th:action="@{/productos/eliminar/{id}(id=${Produ.codigo})}" method="get">
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button>
+                </form>        
+                    
 
         </td>
 
