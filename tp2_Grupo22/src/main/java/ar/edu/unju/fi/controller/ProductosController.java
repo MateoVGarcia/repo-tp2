@@ -3,8 +3,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.*;
+
+import ar.edu.unju.fi.listas.*;
 import ar.edu.unju.fi.model.Producto;
-import ar.edu.unju.fi.listaProducto.*;
 
 @Controller
 @RequestMapping("/productos")

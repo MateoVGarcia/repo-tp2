@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.listaProducto.ListaSucursales;
+import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.FormSucursal;
 
 @Controller
-@RequestMapping("/sucursal")
+@RequestMapping("/sucursales")
 	public class SucursalController{
 	
 	ListaSucursales listaSucursales = new ListaSucursales();
 	
 	@GetMapping("/listado")
 	public String getListaSucursalesPage(Model model) {
-		model.addAttribute("sucursales",listaSucursales.getSucursales());
+		model.addAttribute("sucursales", listaSucursales.getSucursales());
 		return "sucursales";
 	}
 	
@@ -43,6 +43,7 @@ import ar.edu.unju.fi.model.FormSucursal;
  
 	@GetMapping("/modificar/{nombre}")
 	public String getModificarSucursalPage(Model model,@PathVariable(value="nombre")String nombre){
+		boolean edicion = true;
 		FormSucursal sucursalEncontrada = new FormSucursal();
 		for(FormSucursal sucu : listaSucursales.getSucursales()) {
 			if(sucu.getNombre().equals(nombre)) {
@@ -52,6 +53,7 @@ import ar.edu.unju.fi.model.FormSucursal;
 		}
 		
 		model.addAttribute("sucursal", sucursalEncontrada);
+		model.addAttribute("edicion",edicion);
 		
 		return "nueva_sucursal";	
 	}
@@ -69,10 +71,10 @@ import ar.edu.unju.fi.model.FormSucursal;
 					
 				}
 			}
-			return "redirect:/sucursal/listado";
+			return "redirect:/sucursales/listado";
 	}
 	
-	@GetMapping("/eliminat/{nombre}")
+	@GetMapping("/eliminar/{nombre}")
 	public String eliminarSucursal(@PathVariable(value="nombre") String nombre) {
 		for(FormSucursal sucu: listaSucursales.getSucursales()) {
 			if(sucu.getNombre().equals(nombre)) {
@@ -82,7 +84,7 @@ import ar.edu.unju.fi.model.FormSucursal;
 			}
 		}
 		
-		 return"redirect:/sucursal/listado";
+		 return"redirect:/sucursales/listado";
 	}
 }
 	

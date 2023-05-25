@@ -5,7 +5,7 @@
 	
 	<meta charset="UTF-8">
 	<title>Sucursales</title>
-	<link rel="stylesheet" th:href="@{css/estilos.css}">
+	<link rel="stylesheet" th:href="@{../css/estilos.css}">
 	
 </head>
 
@@ -15,11 +15,11 @@
 	
 			<section id="content-sucursal">
 			
-				<a th:href="@{/sucursal/nuevo}">Nueva Sucursal</a><br>
+				<a th:href="@{/sucursales/nuevo}">Nueva Sucursal</a><br>
 						<!-- TABLA DE TURNOS DE PASEADORES -->
 					<table border="1" class="tabla_sucursal">
 								
-								<caption id="cap">Visita Nuestras Sucursales</caption>
+								
 								
 								<tr>
 									<th class="th">Tienda</th>
@@ -33,17 +33,16 @@
 
 								<tr th:each="sucu: ${sucursales}">
 									<td th:text="${sucu.nombre}"></td>
-									<td th:text="${sucu.doreccion}"></td>
+									<td th:text="${sucu.direccion}"></td>
 									<td th:text="${sucu.provincia}"></td>
 									<td th:text="${#temporals.format(sucu.fechaInicio, 'dd/MM/yyy')}"></td>
 									<td th:text="${sucu.email}"></td>
-									<td th:text="${sucu.teledono}"></td>
-										<td>
-											<a th:href="@{/sucursal/modificar/}+${sucu.nombre}">Editar</a>
-											<a th:hreft="@{/sucursal/eliminar}+${sucu.nombre}">Eliminar</a>
-										</td>
-								</tr>
-							
+									<td th:text="${sucu.telefono}"></td>
+									<td>
+										<a th:href="@{/sucursales/modificar/}+${sucu.nombre}">Editar</a>
+										<a th:href="@{/sucursales/eliminar/}+${sucu.nombre}">Eliminar</a>
+									</td>
+							</tr>
 					</table>
 			</section>
 		<footer th:replace="~{layouts/footer :: footer}"></footer>

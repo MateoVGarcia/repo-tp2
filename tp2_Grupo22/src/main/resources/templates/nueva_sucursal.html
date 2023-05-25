@@ -5,7 +5,7 @@
 	
 	<meta charset="UTF-8">
 	<title>Sucursales</title>
-	<link rel="stylesheet" th:href="@{css/estilos.css}">
+	<link rel="stylesheet" th:href="@{../../css/estilos.css}">
 	
 </head>
 
@@ -16,17 +16,17 @@
 			<section>
 				<h3 th:text="${edicion}?'Modificar Sucursal' : 'Nueva Sucursal'"></h3>
 			
-				<form th:action="${edicion}?@{/sucursal/modificar}:@{/sucursal/guardar}" th:field="${sucursal}" method="post"></form>
+				<form th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}" th:object="${sucursal}" method="post">
+				
 				<label for="nombre">Nombre</label><br>
+				<input type="text" id="nombre" name="sucursal_nombre" th:field="*{nombre}"  required> <br><br>
 				
-				<input type="text" id="nombre" name="sucursal_nombre" th:field="*{nombre}" > <br><br>
 				<label for="direccion">Direccion</label> 
+				<input type="text" id="direccion" name="sucursal_direccion" th:field="*{direccion}" required>
 				
-				<input type="text" id="direccion" name="sucursal_direccion" th:field="/{direccion}">
 				<label for="provincia">Provincia</label>
-				
-				<select id="provincia"name="sucursal_provincia" th:field="*{provincia}">
-					<option value="jUJUY">Jujuy</option>
+				<select id="provincia"name="sucursal_provincia" th:field="*{provincia}" required>
+					<option value="JUJUY">Jujuy</option>
 					<option value="SALTA">Salta</option>
 					<option value="TUCUMAN">Tucuman</option>
 				</select>
@@ -34,15 +34,15 @@
 				<br><br>
 				
 				<label for="fecha">Fecha de Inicio</label>
-				<input type="date" id="fecha" name="sucursal_fecha" th:field="*{fechaInicio}"> <br>
+				<input type="date" id="fecha" name="sucursal_fecha" th:field="*{fechaInicio}" required> <br>
 				
 				<label for="email">Email</label>
-				<input type="text" id="email" name="sucursal_telefono" th:field="*{telefono}"><br>
+				<input type="email" id="email" name="sucursal_email" th:field="*{email}" required><br>
 				
 				<label for="telefono">Telefono</label>
-				<input type="text" id="telefono" name="sucursal_telefono" th:field="*{telefono}"> <br>
-				<p><input type="submit" class="button" value="${edicion}?'Modificar':'guardar'"></p>
-				
+				<input type="text" id="telefono" name="sucursal_telefono" th:field="*{telefono}" required> <br>
+				<p><input type="submit" class="button" value='Guardar'></p>
+				</form>
 							
 			
 			</section>
