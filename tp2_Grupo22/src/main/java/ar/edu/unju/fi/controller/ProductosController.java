@@ -7,88 +7,73 @@ import ar.edu.unju.fi.model.Producto;
 import ar.edu.unju.fi.listaProducto.*;
 
 @Controller
+@RequestMapping("/productos")
+
 public class ProductosController {
 	
-	listaproductos Listaproductos = new listaproductos();
-	
-	
-	@GetMapping("/productos/listado")
+
+	//Se muestra el listado de productos
+	@GetMapping("/listado")
 	public String getListaproductospage(Model model) {
-		model.addAttribute("productosn", listaproductos.getProductos());
+		model.addAttribute("productos", listaproductos.getProductos());
 		return "productos";
 	}
 	
-	
-	
-	@GetMapping("/productos/nuevo")
-	public String getNuevoProductopage(Model model){
-		boolean edicion = false;
-		model.addAttribute("producto", new Producto());
-		model.addAttribute("edicion", edicion);
-		return "nuevo_producto";
-	}
-	
-	
-	@PostMapping("/productos/guardar")
-	public ModelAndView getGuardarproductopage(@ModelAttribute("productos")Producto producto) {
-		ModelAndView modelView = new ModelAndView("redirect:/productos/listado");
-		listaproductos.getProductos().add(producto);
-		modelView.addObject("productos", listaproductos.getProductos());
-	return modelView;
-	}
-	
-	
-	
-	@GetMapping("/productos/modificar/{nombre}")
-	public String getModificarProductoPage(Model model, @PathVariable(value = "nombre") String nombre) {
-	    Producto productoEncontrado = null;
-	    boolean edicion = true;
-
-	    for (Producto Produ : listaproductos.getProductos()) {
-	        if (Produ.getNombre().equals(nombre)) {
-	            productoEncontrado = Produ;
-	            break;
-	        }
+	//Agregar nuevo producto
+	  @GetMapping("/nuevo")
+	    public String mostrarFormularioNuevo(Model model) {
+		  boolean edicion=false;
+	        model.addAttribute("producto", new Producto());
+	    	model.addAttribute("edicion", edicion);
+	        return "nuevo_producto";
 	    }
 
-	    model.addAttribute("producto", productoEncontrado);
-	    model.addAttribute("edicion", edicion);
-
-	    return "nuevo_producto";
-	}
-
-	
-	
-	@PostMapping("/productos/modificar")
-	public String modificarProducto(@ModelAttribute("producto") Producto producto) {
-	    for (Producto Produ : listaproductos.getProductos()) {
-	        if (Produ.getNombre().equals(producto.getNombre())) {
-	            Produ.setCodigo(producto.getCodigo());
-	            Produ.setPrecio(producto.getPrecio());
-	            Produ.setCategoria(producto.getCategoria());
-	            Produ.setDescuento(producto.getDescuento());
-	        }
+	  //Guardar, se usa en caso de editar o de agregar un nuevo producto
+	    @PostMapping("/guardar")
+	    public String guardarProducto(@ModelAttribute("producto") Producto producto) {
+	        ModelAndView modelView= new ModelAndView("productos");
+	    	listaproductos.setProductos(producto);
+	    	modelView.addObject("productos", listaproductos.getProductos());
+	        return "redirect:/productos/listado";
+	    }
+	    
+	    //Modificar producto
+	    @GetMapping("/modificar/{codigo}")
+	    public String getModificarProductosPage(Model model, @PathVariable(value="codigo")int codigo) {
+	    	Producto productoModificar = new Producto();
+	    	boolean edicion = true;
+	    	for(Producto produ : listaproductos.getProductos()) {
+	    		if(produ.getCodigo() == (codigo)) {
+	    			productoModificar = produ;
+	    			break;
+	    	}
+	    }
+	    	model.addAttribute("producto", productoModificar);
+	    	model.addAttribute("edicion", edicion);
+	    	
+	    	return "nuevo_producto";
 	    }
 
-	    return "redirect:/productos/listado";
-	}
+        // Eliminar el producto de la lista
+	@GetMapping("/eliminar/{id}")
+	public String eliminarPrtoducto(@PathVariable int id) {
+        Producto productoEliminado = null;
+        
+        for (Producto producto : listaproductos.getProductos()) {
+            if (producto.getCodigo() == id) {
+                productoEliminado = producto;
+                break;
+            }
+        }
 	
-	
-	
-	@GetMapping("/productos/eliminar/{nombre}")
-	public String eliminarPrtoducto(@PathVariable(value = "nombre") String nombre) {
-	    for (Producto produ : listaproductos.getProductos()) {
-	        if (produ.getNombre().equals(nombre)) {
-	            listaproductos.getProductos().remove(produ);
-	            break;
-	        }
-	    }
-
-	    return "redirect:/productos/listado";
-	}
-
-
-
+        if (productoEliminado != null) {
+            listaproductos.getProductos().remove(productoEliminado);
+        }
+        
+        return "redirect:/productos/listado";
+    }
 }
+
+
 
 	
