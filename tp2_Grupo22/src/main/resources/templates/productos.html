@@ -6,7 +6,7 @@
 
 <meta charset="UTF-8">
 
-<title>Don Cacho Petshop</title>
+<title>Productos</title>
 
 <link rel="stylesheet" th:href="@{/css/estilos.css}">
 
@@ -156,10 +156,8 @@
 
 
         
-        <a href="#">EDITAR</a>
-
-  
-      <form th:action="@{/productos/eliminar/{id}(id=${Produ.codigo})}" method="get">
+ 		<a th:href="@{/productos/modificar/}+${Produ.codigo}">Editar</a>
+      	<form th:action="@{/productos/eliminar/{id}(id=${Produ.codigo})}" method="get">
                         <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button>
                 </form>        
                     
