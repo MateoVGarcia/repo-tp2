@@ -365,12 +365,54 @@
 		margin-left: 43%;
 }
 
+
+
+
 .tabla_paseo {
+	margin: 2em;
+	background-color: #ffd4b1;
+	padding: 1em;
+	border-radius: 40px;
+	width: 70%;
+	float:left;
+}
+
+
+
+.tabla_sucursal{
 	margin: 0 0 0 3.5em;
 	background-color: #ffd4b1;
 	padding: 2em;
 	border-radius: 40px;
+	border: 1px solid #593a23;
+	padding: 17px;
+	width: 300px;
+	position: absolute;
+	top: 45%;
+	Left: 15%;
+}
+
+#nuevasucursal{
+	border: 1px solid #593a23;
+	border-radius: 5px;
+	padding: 17px;
+	width: 300px;
+	position: absolute;
+	top: 45%;
+	Left: 37.5%;
+	background-color: #ffd4b1;
+}
+
+#nuevasucursal label,input {
 	
+	margin: .5em .5em .5em .5em;
+}
+
+section h3{
+	font-size: 2em;
+	position: absolute;
+	top: 40%;
+	Left: 37.5%;
 }
 
 .td{
@@ -384,7 +426,8 @@ font-family: cursive;
 }
 
 .th {
-	padding: 0.3em;
+	padding: 0.6em;
+ 	
 }
 
 .th a {
@@ -421,3 +464,21 @@ iframe {
    color:  #B39972;
  
 }
+
+.botonnew {
+	text-align: center;
+}
+
+.button {
+	background: #3866f2;
+	color: #fff;
+	font-family: monospace;
+	border: none;
+	border-radius: .5em;
+	padding: .8em 0;
+	font-weight: 300;
+	font-size: 1rem;
+	height: 35px;
+	width: 100px;
+}
+

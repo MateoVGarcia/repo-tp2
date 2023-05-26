@@ -1,4 +1,5 @@
  <!DOCTYPE html> 
+ 
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
@@ -14,9 +15,12 @@
 		<header th:replace="~{layouts/header :: header}"></header>	
 	
 			<section>
+			
+			<div >
+			
 				<h3 th:text="${edicion}?'Modificar Sucursal' : 'Nueva Sucursal'"></h3>
 			
-				<form th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}" th:object="${sucursal}" method="post">
+				<form th:action="${edicion}?@{/sucursales/modificar}:@{/sucursales/guardar}" th:object="${sucursal}" method="post" id="nuevasucursal">
 				
 				<label for="nombre">Nombre</label><br>
 				<input type="text" id="nombre" name="sucursal_nombre" th:field="*{nombre}"  required> <br><br>
@@ -44,7 +48,7 @@
 				<p><input type="submit" class="button" value='Guardar'></p>
 				</form>
 							
-			
+			</div>
 			</section>
 			
 			

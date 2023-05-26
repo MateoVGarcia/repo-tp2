@@ -1,4 +1,5 @@
  <!DOCTYPE html>
+ 
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
@@ -15,11 +16,11 @@
 	
 			<section id="content-sucursal">
 			
-				<a th:href="@{/sucursales/nuevo}">Nueva Sucursal</a><br>
+				<!-- <a th:href="@{/sucursales/nuevo}" class="botonnew">Nueva Sucursal</a><br> -->
 						<!-- TABLA DE TURNOS DE PASEADORES -->
 					<table border="1" class="tabla_sucursal">
 								
-								
+								<!-- tabla_sucursal -->
 								
 								<tr>
 									<th class="th">Tienda</th>
@@ -28,16 +29,17 @@
 									<th class="th">Fecha de Inicio</th>
 									<th class="th">Email</th>
 									<th class="th">Contactanos</th>
+									<th><a th:href="@{/sucursales/nuevo}" class="botonnew">Nueva Sucursal</a></th>
 									
 								</tr>
 
 								<tr th:each="sucu: ${sucursales}">
-									<td th:text="${sucu.nombre}"></td>
-									<td th:text="${sucu.direccion}"></td>
-									<td th:text="${sucu.provincia}"></td>
-									<td th:text="${#temporals.format(sucu.fechaInicio, 'dd/MM/yyy')}"></td>
-									<td th:text="${sucu.email}"></td>
-									<td th:text="${sucu.telefono}"></td>
+									<td th:text="${sucu.nombre}" class="th" ></td>
+									<td th:text="${sucu.direccion}" class="th"></td>
+									<td th:text="${sucu.provincia}" class="th"></td>
+									<td th:text="${#temporals.format(sucu.fechaInicio, 'dd/MM/yyy')}" class="th"></td>
+									<td th:text="${sucu.email}" class="th"></td>
+									<td th:text="${sucu.telefono}" class="th"></td>
 									<td>
 										<a th:href="@{/sucursales/modificar/}+${sucu.nombre}">Editar</a>
 										<a th:href="@{/sucursales/eliminar/}+${sucu.nombre}">Eliminar</a>
