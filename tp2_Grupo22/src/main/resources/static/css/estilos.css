@@ -322,6 +322,8 @@
 #productos_articulos section h2{
     font-family: arial black;
 }
+
+
 .productos_footer{
 	width: 100%;
 	bottom: 0;
@@ -330,20 +332,115 @@
 	text-align: center;
 }
 
-/* Sucursales y servicio paseo*/
-
-.html_sucursales {
-	height: 100%;
+/*Productos/nuevo_producto*/
+#nuevoproduccenter{
 	
 }
 
-.body_sucursales-paseo{
-	margin: 0;
-	position: relative;
-	padding-bottom: 3em;
-	background-color:#fff3e8;
-	min-height: 100vh;
+#nuevoprodu{
+	font-size: 20px;
+	list-style: none;
+    margin: 0px auto;
+    background: white;    
+    text-align: center;
+    display:inline-block;
+    border: 10px solid #e4a395;
+    background-color: #fdcae1;
+    border: 5px solid #ff6961;
+    border-bottom-style: dashed;
+    color: black;
+    
 }
+
+#nuevoprodu label{
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+#nuevoprodu input {
+	
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  border: solid #ccc;
+}
+
+#nuevoprodu form p input{
+border: solid #8f6277; /*anchura, estilo y color borde*/
+padding: 5px; /*espacio alrededor texto*/
+background-color: #edbad1; /*color botón*/
+color: black; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 50px; /*bordes redondos*/
+}
+
+#contenido_producto table{
+	background-color: #fdcae1;
+	text-align: left;
+	width: 40%;
+	border-collapse: collapse;
+	border: solid 1px green;
+	font-size: 15px;
+	font-family: comic sans;
+}
+
+#contenido_producto table tr th{
+	background-color: #e4a395;
+	border-bottom:solid 5px gray;
+	font-family: comic sans;
+	border-collapse: collapse;
+}
+
+#contenido_producto table tr td{
+	font-family: comic sans;
+	background-color: #fdcae1;
+	text-align: left;
+	width: 40%;
+	border-collapse: collapse;
+	border: inset;
+}
+
+#contenido_producto table a{
+	border: solid #8f6277; /*anchura, estilo y color borde*/
+padding: 1px; /*espacio alrededor texto*/
+background-color: #edbad1; /*color botón*/
+color: black; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 5px; /*bordes redondos*/
+}
+
+#contenido_producto table td form button{
+	border: solid #8f6277; /*anchura, estilo y color borde*/
+padding: 1px; /*espacio alrededor texto*/
+background-color: #edbad1; /*color botón*/
+color: black; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 5px; /*bordes redondos*/
+}
+
+#agregaprodu{
+	
+	font-size: 20px;
+	border: solid #8f6277; /*anchura, estilo y color borde*/
+padding: 1px; /*espacio alrededor texto*/
+background-color: #edbad1; /*color botón*/
+color: black; /*color texto*/
+text-decoration: none; /*decoración texto*/
+text-transform: uppercase; /*capitalización texto*/
+font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+border-radius: 5px; /*bordes redondos*/
+}
+
+
+
+/* Sucursales y servicio paseo*/
 .titulo {
 	    text-align: center;
 	    margin-top: 30px;
@@ -358,9 +455,9 @@
 	    padding: 0.5em;
 }
 
-
 .titulo {
 		vertical-align: text-bottom;  
+		/*text-align: center;*/
 		float: left;
 		margin-left: 43%;
 }
@@ -368,72 +465,32 @@
 
 
 
-.tabla_paseo {
-	margin: 2em;
-	background-color: #ffd4b1;
-	padding: 1em;
-	border-radius: 40px;
-	width: 70%;
-	float:left;
+table {
+
+ 
+   width: 60%;
+   border: 1px solid #000;
+   margin-top: 2em;
+
+  
+}
+
+th, td {
+   width: 55%;
+   text-align: left;
+   vertical-align: top;
+   border: 1px solid #000;
+   border-collapse: collapse;
+   padding: 0.3em;
+   caption-side: bottom;
+  
 }
 
 
 
-.tabla_sucursal{
-	margin: 0 0 0 3.5em;
-	background-color: #ffd4b1;
-	padding: 2em;
-	border-radius: 40px;
-	border: 1px solid #593a23;
-	padding: 17px;
-	width: 300px;
-	position: absolute;
-	top: 45%;
-	Left: 15%;
-}
-
-#nuevasucursal{
-	border: 1px solid #593a23;
-	border-radius: 5px;
-	padding: 17px;
-	width: 300px;
-	position: absolute;
-	top: 45%;
-	Left: 37.5%;
-	background-color: #ffd4b1;
-}
-
-#nuevasucursal label,input {
+body {
+	background-color:#fff3e8; 
 	
-	margin: .5em .5em .5em .5em;
-}
-
-section h3{
-	font-size: 2em;
-	position: absolute;
-	top: 40%;
-	Left: 37.5%;
-}
-
-.td{
-
-background-color: #ffd4b1;
-padding: .8em;
-font-size: 1em;
-font-family: cursive;
-
-
-}
-
-.th {
-	padding: 0.6em;
- 	
-}
-
-.th a {
-	    font-family: monospace;
-	    color: #720909;
-	    
 }
 
 .producto_footer{
@@ -443,18 +500,18 @@ font-family: cursive;
     color: white;
     position: absolute;
     text-align: center;
-    margin-top: auto;
+    margin: auto;
 }
 
 
 .image {
-	width: 230px;
+	width: 280px;
 	
 }
 
 iframe {
-	width: 200px;
-	height: 200px;
+	width: 250px;
+	height: 250px;
 	
 }
 
@@ -464,21 +521,3 @@ iframe {
    color:  #B39972;
  
 }
-
-.botonnew {
-	text-align: center;
-}
-
-.button {
-	background: #3866f2;
-	color: #fff;
-	font-family: monospace;
-	border: none;
-	border-radius: .5em;
-	padding: .8em 0;
-	font-weight: 300;
-	font-size: 1rem;
-	height: 35px;
-	width: 100px;
-}
-
