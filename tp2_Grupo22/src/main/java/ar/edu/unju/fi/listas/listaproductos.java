@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.listaProducto;
+package ar.edu.unju.fi.listas;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;

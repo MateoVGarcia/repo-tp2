@@ -16,12 +16,16 @@
 <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
     <label for="nombre">Nombre:</label> 
     <input type="text" id="nombre" name="producto_nombre" th:field="*{nombre}" required/><br/>
+    
     <label  for="precio">Precio:</label>
     <input type="number" min=0 step=0.01 id="precio" name="producto_precio" th:field="*{precio}" required/><br/>
+    
     <label  for="categoria">Categoría:</label>
     <input type="text" id="categoria" name="producto_categoria" th:field="*{categoria}" required/><br/>
+    
     <label  for="descuento">Descuento:</label>
     <input type="number" min=0 id="descuento" name="producto_descuento" th:field="*{descuento}" required/><br/>
+    
     <!-- El codigo esta oculto para que no sea modificable. Si se modifica el producto, si o si sera el mismo codigo, de lo contrario se generará uno nuevo -->
     <input type="hidden" id="codigo" name="producto_codigo" th:field="*{codigo}"/><br/>
     <p><input type="submit" class="button" value="Guardar"/></p>
