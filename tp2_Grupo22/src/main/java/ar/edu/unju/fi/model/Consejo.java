@@ -1,9 +1,17 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
+@Component
 public class Consejo {
-	
+	@NotBlank(message="Debe seleccionar una categoria")
 	private String categoria;
+	@NotEmpty(message="No puede poner un link vacío")
 	private String link;
+	@NotEmpty(message="Necesita poner una descripción")
 	private String descripcion;
 	
 	
@@ -13,7 +21,9 @@ public class Consejo {
 	
 	public Consejo(String categoria, String link, String descripcion) {
 		this.categoria = categoria;
+		//@NotNull
 		this.link = link;
+		//@NotNull
 		this.descripcion = descripcion;
 	}
 	

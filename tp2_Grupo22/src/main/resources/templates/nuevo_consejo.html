@@ -30,12 +30,15 @@
 						<option value="Perros">Perros</option>
 						<option value="General">General</option>
 					</select><br><br>
+					<div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
 					
 					<label for="link">Link</label><br>
 					<input type="text" id="link" name="consejo_link" th:field="*{link}"  > <br><br>
+					<div class="text-danger" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></div>
 					
 					<label for="descripcion">Descripcion</label> <br>
 					<input type="text" id="descripcion" name="consejo_descripcion" th:field="*{descripcion}" >
+					<div class="text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
 					<p><input type="submit" class="button" value='Guardar'></p>
 				</form>
 					
