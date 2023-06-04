@@ -14,11 +14,12 @@ public class Consejo {
 	@NotEmpty(message="Necesita poner una descripción")
 	private String descripcion;
 	
-	
+	//Constructor sin parametros
 	public Consejo() {
 		
 	}
 	
+	//Constructor parametrizado
 	public Consejo(String categoria, String link, String descripcion) {
 		this.categoria = categoria;
 		//@NotNull
@@ -27,6 +28,7 @@ public class Consejo {
 		this.descripcion = descripcion;
 	}
 	
+	//Getters y setters
 	public String getCategoria() {
 		return categoria;
 	}

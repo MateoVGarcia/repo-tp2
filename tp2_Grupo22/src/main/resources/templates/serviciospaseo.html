@@ -6,7 +6,7 @@
 	
 	<meta charset="UTF-8">
 	<title>Servicio de Paseos</title>
-	<link rel="stylesheet" th:href="@{css/estilos.css}">
+	<link rel="stylesheet" th:href="@{../css/estilos.css}">
 	
 </head>
 
@@ -19,33 +19,15 @@
 				
 						<!-- TABLA DE TURNOS DE PASEADORES -->
 						<table border="1" class="tabla_paseo">
-								<tr>
-									<th class="th"><b><a>Día</a></b></th>
-									<th class="th"><b><a>Lunes</a></b></th>
-									<th class="th"><b><a>Martes</a></b></th>
-									<th class="th"><b><a>Miércoles</a></b></th>
-									<th class="th"><b><a>Jueves</a></b></th>
-									<th class="th"><b><a>Viernes</a></b></th>
-									<th class="th"><b><a>Sábado</a></b></th>
-								</tr>
-								<tr>
-									<td class="th"><b><a>Horario</a></b></td>
-									<td class="th"><a>9 a 12 - 16 a 18</a></td>
-									<td class="th"><a>9 a 12 - 16 a 18</a></td>
-									<td class="th"><a>9 a 12 - 16 a 18</a></td>
-									<td class="th"><a>9 a 12 - 16 a 18</a></td>
-									<td class="th"><a>9 a 12 - 16 a 18</a></td>
-									<td class="th"><a>9 a 12 - 16 a 18</a></td>
-								</tr>
-								<tr>
-									<td class="th"><b><a>Paseador</a></b></td>
-									<td class="th"><a>Joaquin Burgos</a></td>
-									<td class="th"><a>Nicolas Cruz</a></td>
-									<td class="th"><a>Mateo Garcia</a></td>
-									<td class="th"><a>Araceli Lopez</a></td>
-									<td class="th"><a>Joaquin Burgos</a></td>
-									<td class="th"><a>Mateo Garcia</a></td>
-								</tr>
+						<tr>
+						<th>Dia</th>
+						<th>Paseador</th>
+						<th>Horario</th>
+						</tr>
+						<tr th:each="serv: ${servicios}">
+						<td th:text="${serv.dia}"></td>
+						<td th:text="${serv.paseador}"></td>
+						<td th:text="${serv.horainicio}+' a '+${serv.horafin}"></td>
 						</table>
 			</div>
 				
@@ -54,11 +36,11 @@
 		<p><b>Contenido relacionado</b></p>
 		<div>
 			<a href="https://www.clarin.com/viste/elegir-mejor-tipo-alimento-perro_0_rM6xA8m02v.html" target="blank">Como elegir el mejor alimento para tu perro (Clarin)</a><br>
-			<img th:src="@{images\perro.png}">
+			<img th:src="@{../images\perro.png}">
 		</div>
 		<div><br>
 			<a href="https://www.latercera.com/practico/noticia/consejos-para-escoger-el-mejor-alimento-para-gatos/4WMDLEAJ5BFOVH2UDARSPXDBCE/" target="blank">Como elegir el mejor alimento para tu gato (LaTercera)</a><br>
-			<img th:src="@{images\gato.png}" >
+			<img th:src="@{../images\gato.png}" >
 		</div>
 	
 	</aside>
