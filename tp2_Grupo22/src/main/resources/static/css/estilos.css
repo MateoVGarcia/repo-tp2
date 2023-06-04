@@ -138,6 +138,20 @@
 	text-align: center;
 	margin: auto;
 }
+
+.cons_table{
+	text-align:center;
+	margin-left:25em;
+}
+
+.cons_button{
+	text-decoration:none;
+	color:white;
+	border:6px solid #FFB2A3;
+	background-color: #FFB2A3;
+	border-radius:8px;
+	margin-bottom:5em;
+}
 .gatos{
 	text-align: center;
 	margin-bottom: 50px;

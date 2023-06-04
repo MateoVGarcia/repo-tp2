@@ -3,52 +3,92 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Consejos para la salud</title>
-		<link rel="stylesheet" th:href="@{css/estilos.css}">
+		<link rel="stylesheet" th:href="@{../css/estilos.css}">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 
 <body class="consejos_body">
 	<header th:replace="~{layouts/header :: header}"></header>
 	
-	
-	<article class="consejos_article">
-	<p class="item_salud"><b> ARTICULOS PARA LA SALUD DE TUS MASCOTAS </b></p><br>
-	
-	<section class="gatos">
-		<p><b><i>Para tus GATOS</i></b></p><br>
-		<img th:src="@{images/gatosconsejos.jpg}" title="Consejos de gatos" alt="Consejos de gatos"><br>
-		<ul>
-			<li class="gatos-item"><a href="https://www.semana.com/vida-moderna/articulo/ocho-consejos-esenciales-para-banar-un-gato-en-casa-y-mantenerlo-limpio-y-saludable/202301/">Consejos para bañar a tu gato <i>(Semana.com)</i></a></li><br>
-			<li class="gatos-item"><a href="https://tn.com.ar/salud/2022/09/19/mitos-y-recomendaciones-sobre-la-hidratacion-de-los-gatos-una-preocupacion-diaria-para-sus-duenos/">Consejos para la hidratacion de tu gato <i>(tn.com.ar)</i></a></li><br>
-			<li class="gatos-item"><a href="https://www.prensalibre.com/vida/salud-y-familia/consejos-para-elegir-el-arenero-para-el-gato-y-los-sustratos/">Consejos para elegir el arenero de tu gato <i>(prensalibre.com)</i></a></li><br>
-			<li class="gatos-item"><a href="https://www.biobiochile.cl/noticias/sociedad/animales/2023/03/21/6-consejos-para-mantener-feliz-a-tu-gato-en-casa.shtml">Como mantener a tu gato feliz<i>(biobiochile.cl)</i></a></li>
-		</ul>
-	</section>
-	
-	<section class="perros">
-		<p><b><i>Para tus PERROS</i></b></p><br>
-		<img th:src="@{images/perrosconsejos.jpg}" title="Consejos de perros" alt="Consejos de perros"><br>
-		<ul>
-			<li class="perros-item"><a href="https://www.semana.com/vida-moderna/articulo/consejos-practicos-para-quitar-el-mal-aliento-de-los-perros-de-manera-efectiva/202332/">Como quitarle el mal aliento a tus perros <i>(Semana.com)</i></a></li><br>
-			<li class="perros-item"><a href="https://www.lavanguardia.com/mascotas/perros/20230421/8907815/bueno-tirarle-pelota-perro-consejos-jugar-forma-saludable-brl.html">Como jugar de forma saludable con tu perro <i>()lavanguardia.com)</i></a></li><br>
-			<li class="perros-item"><a href="https://tn.com.ar/mascotas/2022/11/22/tres-consejos-para-que-los-perros-que-se-quedan-solos-mucho-tiempo-no-sufran/">Consejos para que los perros que estan mucho tiempo solos no sufran <i>(tn.com.ar)</i></a></li><br>
-			<li class="perros-item"><a href="https://www.lavanguardia.com/mascotas/perros/20230328/8849216/3-consejos-conseguir-nuestro-perro-baje-peso-pvlv.html">Conejos para que nuestro perro baje de peso <i>(lavanguardia.com)</i></a></li>
-		</ul>
-	</section>
-	
-	<section class="general">
-		<p><b><i>EN GENERAL</i></b></p><br>
-		<img th:src="@{images/mascotasconsejos.jpg}" title="Consejos de mascotas" alt="Consejos de mascotas"><br>
-		<ul>
-			<li class="general-item"><a href="https://www.rionegro.com.ar/animales/5-consejos-para-prevenir-los-problemas-respiratorios-en-perros-y-gatos-2858046/">Formas de prevenir enfermedades respiratorias en perros y gatos <i>(Rionegro.com)</i></a></li><br>
-			<li class="general-item"><a href="https://www.lanacion.com.ar/lifestyle/navidad-y-ano-nuevo-consejos-y-claves-para-quienes-deben-dejar-a-su-mascota-en-casa-durante-las-nid19122022/">Que hacer si dejas a tu mascota sola durante festividades <i>(LaNacion.com)</i></a></li><br>
-			<li class="general-item"><a href="https://news.agrofy.com.ar/noticia/202374/que-vacuna-hay-que-ponerle-cachorros-consejos-evitar-riesgos-perros-y-gatos">Que vacunas necesitan los cachorros (Perros y Gatos) <i>(news.agrofy.com)</i></a></li><br>
-			<li class="general-item"><a href="https://www.perfil.com/noticias/reperfilar/golpe-de-calor-los-mejores-consejos-para-que-tu-mascota-no-sufra-esta-temperatura.phtml">Consejos para que las mascotas no sufran los golpes de calor <i>(Perfil.com)</i></a></li>
-		</ul>
-	</section>
-	</article>
-	
-	<footer th:replace="~{layouts/footer :: footer}"></footer>
+	<div class="row">
 
+
+	<article class="consejos_article">
+		<p class="item_salud"><b> ARTICULOS PARA LA SALUD DE TUS MASCOTAS </b></p><br>
+		<a th:href="@{/consejos/nuevo}" class="cons_button">Agregar Consejos</a>
+
+		<div class=".row">
+		<section class="gatos">
+			<p><b><i>Para tus GATOS</i></b></p><br>
+			<img th:src="@{../images/gatosconsejos.jpg}" title="Consejos de gatos" alt="Consejos de gatos"><br>
+			<div class=".col-md-8"></div>
+			<div class=".col-md-4">
+			<table class="cons_table">
+					<tr>
+						<th>Links</th>
+					</tr>
+					<tr class="gatos-item" th:each="cons: ${consejos}" th:if="${cons.categoria} == 'Gatos'" >
+						<td class="th"> <a th:href="${cons.link}" th:text="${cons.descripcion}"> </a>  </td>	
+						<td>
+						<a class="cons_button" th:href="@{/consejos/modificar/}+${cons.descripcion}">Editar</a>
+						<a class="cons_button" th:href="@{/consejos/eliminar/}+${cons.descripcion}">Eliminar</a>		
+						</td>					
+					</tr>
+				</table>
+				</div>
+		</section>
+		</div>
+		<div class=".row">
+		<section class="perros">
+			<p><b><i>Para tus PERROS</i></b></p><br>
+			<img th:src="@{../images/perrosconsejos.jpg}" title="Consejos de perros" alt="Consejos de perros"><br>
+			<div class=".col-md-8"></div>
+			<div class=".col-md-4">
+			<table class="cons_table">
+					<tr>
+						<th>Links</th>
+					</tr>
+					<tr class="perros-item" th:each="cons: ${consejos}" th:if="${cons.categoria} == 'Perros'" >
+						<td class="th"> <a th:href="${cons.link}" th:text="${cons.descripcion}"> </a>  </td>
+						<td>
+						<a class="cons_button" th:href="@{/consejos/modificar/}+${cons.descripcion}">Editar</a>
+						<a class="cons_button" th:href="@{/consejos/eliminar/}+${cons.descripcion}">Eliminar</a>		
+						</td>		
+					</tr>
+				</table>
+			</div>
+		</section>
+		</div>
+		<div class=".row">
+		<section class="general">
+			<p><b><i>EN GENERAL</i></b></p><br>
+			<img th:src="@{../images/mascotasconsejos.jpg}" title="Consejos de mascotas" alt="Consejos de mascotas"><br>
+			<div class=".col-md-8"></div>
+			<div class=".col-md-4">
+			<table class="cons_table">
+					<tr>
+						<th>Links</th>
+					</tr>
+					<tr class="general-item" th:each="cons: ${consejos}" th:if="${cons.categoria} == 'General'" >
+						<td class="th"> <a th:href="${cons.link}" th:text="${cons.descripcion}"> </a>  </td>	
+						<td>
+						<a class="cons_button" th:href="@{/consejos/modificar/}+${cons.descripcion}">Editar</a>
+						<a class="cons_button" th:href="@{/consejos/eliminar/}+${cons.descripcion}">Eliminar</a>		
+						</td>					
+					</tr>
+				</table>
+			</div>
+
+		</section>
+		</div>
+	</article>
+	</div>
+	<div class="row">
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+	</div>
+	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
 </html>
