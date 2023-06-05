@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import ar.edu.unju.fi.listas.ListaServicios;
+import ar.edu.unju.fi.model.Consejo;
 import ar.edu.unju.fi.model.Servicio;
 import jakarta.validation.Valid;
 
@@ -25,92 +26,81 @@ public class ServicioController {
 	@Autowired
 	private Servicio servicio;
 	
-	
-	@GetMapping("")
-	public String getServicioPage() {
-		return "serviciospaseo";
-	}
-	
-	@GetMapping("/listado")
-	public String getServiciosPage(Model model) {
+	//Pagina con el listado de los consejos (Cada uno está separado por categoría con th:if)
+@GetMapping("/listado")
+public String getServiciosPage(Model model) {
 	model.addAttribute("servicios", listaServicios.getServicios());
-	return "serviciospaseo";
+	return "servicios";
+}
+
+
+	//Pagina para crear un consejo nuevo
+@GetMapping("/nuevo")
+public String getNuevoPage(Model model) {
+	boolean edicion = false ;
+	model.addAttribute("servicio",servicio );
+	model.addAttribute("edicion",edicion);
+	return "nuevo_servicio";
+}
+
+@GetMapping("/modificar/{paseador}")
+public String getModificarPage(Model model,@PathVariable(value="paseador")String pas){
+	boolean edicion = true;
+	Servicio servicioEncontrado = new Servicio();
+	for(Servicio serv : listaServicios.getServicios()) {
+		if(serv.getPaseador().equals(pas)) {
+			servicioEncontrado = serv;
+			break;
+		}
 	}
 	
+	model.addAttribute("servicio", servicioEncontrado);
+	model.addAttribute("edicion",edicion);
 	
-	@GetMapping("/nuevo")
-	 public String getNuevoServicioPage(Model model) {
-        boolean edicion = false;
-        model.addAttribute("servicio", servicio);
-        model.addAttribute("edicion", edicion);
-        return "nuevo_servicio";
-    }
-	
-	
-	@PostMapping("/guardar")
-	public ModelAndView postGuardarServicioPage(@Valid @ModelAttribute("servicios")Servicio servicio, BindingResult result) {
-		 if (result.hasErrors()) {
-			 ModelAndView modelView = new ModelAndView("nuevo_servicio");
-		     return modelView;
-		    }
-		
-		ModelAndView modelView = new ModelAndView("redirect:/servicios/listado");
-		listaServicios.getServicios().add(servicio);
-		modelView.addObject("servicios", listaServicios.getServicios());
+	return "nuevo_servicio";	
+}
+
+@PostMapping("/modificar")
+public String modificarConsejo(@ModelAttribute("servicio")Servicio servicio ) {
+	for(Servicio serv: listaServicios.getServicios()) { 
+		if(serv.getPaseador().equals(servicio.getPaseador())) {
+			
+			
+			serv.setDia(servicio.getDia());
+			serv.setPaseador(servicio.getPaseador());
+			serv.setHorainicio(servicio.getHorainicio());
+			serv.setHorafin(servicio.getHorafin());
+		}
+	}
+	return "redirect:/servicios/listado";
+}
+
+	//Pagina de guardado de los consejos
+@PostMapping("/guardar")
+public ModelAndView getGuardarServiciosPage(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
+	ModelAndView modelView = new ModelAndView("servicios");
+	if(result.hasErrors()) {
+		modelView.setViewName("nuevo_servicio");
+		modelView.addObject("servicio", servicio);
 		return modelView;
 	}
-	
-	
-	
-	@GetMapping("/modificar/{paseador}")
-	public String getModificarServicioPage(Model model, @PathVariable(value = "paseador") String paseador) {
-	    Servicio servicioEncontrado = null;
-	    boolean edicion = true;
-	    for (Servicio serv : listaServicios.getServicios()){
-	        if (serv.getPaseador().equals(paseador)) {
-	            servicioEncontrado = serv;
-	            break;
-	        }
-	    }
+	listaServicios.getServicios().add(servicio);
+	modelView.addObject("servicios", listaServicios.getServicios());
+	return modelView;
+}
 
-	    model.addAttribute("servicio", servicioEncontrado);
-	    model.addAttribute("edicion", edicion);
-
-	    return "nuevo_servicio";
+	//Pagina para eliminar consejos
+@GetMapping("/eliminar/{paseador}")
+public String eliminarServicio(@PathVariable(value="paseador") String pas) {
+	for(Servicio serv: listaServicios.getServicios()) {
+		if(serv.getPaseador().equals(pas)) {
+			listaServicios.getServicios().remove(serv);
+			break;
+			
+		}
 	}
 	
-	
-	
-	
-	@PostMapping("/modificar")
-	public String postModificarServicioPage(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			return "nuevo_servicio";
-	    }
-		
-		for (Servicio serv  : listaServicios.getServicios()) {
-	        if (serv.getPaseador().equals(servicio.getPaseador())) {
-	        	serv.setDia(servicio.getDia());
-	            serv.setHorainicio(servicio.getHorainicio());
-	            serv.setHorafin(servicio.getHorafin());
-	          
-	        }
-	    }
+	 return"redirect:/servicios/listado";
+}
 
-	    return "redirect:/servicios/listado";
-	}
-	
-	
-	@GetMapping("/eliminar/{paseador}")
-	public String eliminarServicio(@PathVariable(value = "paseador") String paseador) {
-	    for (Servicio serv : listaServicios.getServicios()) {
-	        if (serv.getPaseador().equals(paseador)) {
-	        	listaServicios.getServicios().remove(serv);
-	            break;
-	        }
-	    }
-
-	    return "redirect:/servicios/listado";
-	}
-	
 } 
