@@ -32,11 +32,9 @@
 
 .main_header img{
 		border-radius: 50%;
-		height: 5%;
-		width: 5%;
-		float: left;
-		margin-left: 0.5em;
-		border: 0.3em solid black;
+		max-height: 50%;
+    	max-width: 50%;
+		border: 0.3em solid black;
 }
 .main_header img, h1{
 	display: inline-block;
@@ -333,10 +331,10 @@
 }
 
 /*Productos/nuevo_producto*/
-#nuevoproduccenter{
-	
+.col-bg{
+	background-position: left left;
 }
-
+*
 #nuevoprodu{
 	font-size: 20px;
 	list-style: none;
@@ -365,46 +363,76 @@
   margin: 10px 0;
   border: solid #ccc;
 }
+#nuevoprodu select {
+	
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  border: solid #ccc;
+  
+}
+
+#nuevoprodu select:hover{
+	background-color: #edbad1;
+	color: white;
+}
 
 #nuevoprodu form p input{
 border: solid #8f6277; /*anchura, estilo y color borde*/
 padding: 5px; /*espacio alrededor texto*/
-background-color: #edbad1; /*color botón*/
+background-color: #edbad1; /*color botÃ³n*/
 color: black; /*color texto*/
-text-decoration: none; /*decoración texto*/
-text-transform: uppercase; /*capitalización texto*/
-font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+text-decoration: none; /*decoraciÃ³n texto*/
+text-transform: uppercase; /*capitalizaciÃ³n texto*/
+font-family: 'Helvetica', sans-serif; /*tipografÃ­a texto*/
 border-radius: 50px; /*bordes redondos*/
 }
 
+
 #contenido_producto table{
-	background-color: #fdcae1;
-	text-align: left;
-	width: 40%;
-	border-collapse: collapse;
-	border: solid 1px green;
-	font-size: 15px;
-	font-family: comic sans;
+	border: solid 1px black;
+	background-color: white;
+	
 }
 
-#contenido_producto table tr th{
-	background-color: #e4a395;
-	border-bottom:solid 5px gray;
-	font-family: comic sans;
+#contenido_producto tr:hover{
+	background-color: black;
+	color: white;
+}
+
+#contenido_producto thead tr th{
+	background-color: #DFEB62;
+	text-align: center;
 	border-collapse: collapse;
 }
 
-#contenido_producto table tr td{
-	font-family: comic sans;
-	background-color: #fdcae1;
-	text-align: left;
-	width: 40%;
-	border-collapse: collapse;
-	border: inset;
+#contenido_producto td:hover{
+	background-color: #f062ab;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#contenido_producto table a{
-	border: solid #8f6277; /*anchura, estilo y color borde*/
+ .custom-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Helvetica', sans-serif; 
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    .custom-button:hover {
+      background-color: #f062ab;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+
+
+.custom-button a {
+border: solid #8f6277; /*anchura, estilo y color borde*/
 padding: 1px; /*espacio alrededor texto*/
 background-color: #edbad1; /*color botón*/
 color: black; /*color texto*/
@@ -414,33 +442,47 @@ font-family: 'Helvetica', sans-serif; /*tipografía texto*/
 border-radius: 5px; /*bordes redondos*/
 }
 
-#contenido_producto table td form button{
-	border: solid #8f6277; /*anchura, estilo y color borde*/
+.custom-button form button{
+	
 padding: 1px; /*espacio alrededor texto*/
 background-color: #edbad1; /*color botón*/
 color: black; /*color texto*/
 text-decoration: none; /*decoración texto*/
 text-transform: uppercase; /*capitalización texto*/
 font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-border-radius: 5px; /*bordes redondos*/
-}
+border-radius: 5px; /*bordes redondos*/}
 
 #agregaprodu{
 	
 	font-size: 20px;
 	border: solid #8f6277; /*anchura, estilo y color borde*/
 padding: 1px; /*espacio alrededor texto*/
-background-color: #edbad1; /*color botón*/
+background-color: #edbad1; /*color botÃ³n*/
 color: black; /*color texto*/
-text-decoration: none; /*decoración texto*/
-text-transform: uppercase; /*capitalización texto*/
-font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+text-decoration: none; /*decoraciÃ³n texto*/
+text-transform: uppercase; /*capitalizaciÃ³n texto*/
+font-family: 'Helvetica', sans-serif; /*tipografÃ­a texto*/
 border-radius: 5px; /*bordes redondos*/
 }
+#agregaprodu:hover {
+      background-color: #f062ab;}
 
 
 
 /* Sucursales y servicio paseo*/
+
+.html_sucursales {
+	height: 100%;
+	
+}
+
+.body_sucursales-paseo{
+	margin: 0;
+	position: relative;
+	padding-bottom: 3em;
+	background-color:#fff3e8;
+	min-height: 100vh;
+}
 .titulo {
 	    text-align: center;
 	    margin-top: 30px;
@@ -455,9 +497,9 @@ border-radius: 5px; /*bordes redondos*/
 	    padding: 0.5em;
 }
 
+
 .titulo {
 		vertical-align: text-bottom;  
-		/*text-align: center;*/
 		float: left;
 		margin-left: 43%;
 }
@@ -465,32 +507,72 @@ border-radius: 5px; /*bordes redondos*/
 
 
 
-table {
-
- 
-   width: 60%;
-   border: 1px solid #000;
-   margin-top: 2em;
-
-  
-}
-
-th, td {
-   width: 55%;
-   text-align: left;
-   vertical-align: top;
-   border: 1px solid #000;
-   border-collapse: collapse;
-   padding: 0.3em;
-   caption-side: bottom;
-  
+.tabla_paseo {
+	margin: 2em;
+	background-color: #ffd4b1;
+	padding: 1em;
+	border-radius: 40px;
+	width: 70%;
+	float:left;
 }
 
 
 
-body {
-	background-color:#fff3e8; 
+.tabla_sucursal{
+	margin: 0 0 0 3.5em;
+	background-color: #ffd4b1;
+	padding: 2em;
+	border-radius: 40px;
+	border: 1px solid #593a23;
+	padding: 17px;
+	width: 300px;
+	position: absolute;
+	top: 45%;
+	Left: 15%;
+}
+
+#nuevasucursal{
+	border: 1px solid #593a23;
+	border-radius: 5px;
+	padding: 17px;
+	width: 300px;
+	position: absolute;
+	top: 45%;
+	Left: 37.5%;
+	background-color: #ffd4b1;
+}
+
+#nuevasucursal label,input {
 	
+	margin: .5em .5em .5em .5em;
+}
+
+section h3{
+	font-size: 2em;
+	position: absolute;
+	top: 40%;
+	Left: 37.5%;
+}
+
+.td{
+
+background-color: #ffd4b1;
+padding: .8em;
+font-size: 1em;
+font-family: cursive;
+
+
+}
+
+.th {
+	padding: 0.6em;
+ 	
+}
+
+.th a {
+	    font-family: monospace;
+	    color: #720909;
+	    
 }
 
 .producto_footer{
@@ -500,18 +582,18 @@ body {
     color: white;
     position: absolute;
     text-align: center;
-    margin: auto;
+    margin-top: auto;
 }
 
 
 .image {
-	width: 280px;
+	width: 230px;
 	
 }
 
 iframe {
-	width: 250px;
-	height: 250px;
+	width: 200px;
+	height: 200px;
 	
 }
 
@@ -521,3 +603,21 @@ iframe {
    color:  #B39972;
  
 }
+
+.botonnew {
+	text-align: center;
+}
+
+.button {
+	background: #3866f2;
+	color: #fff;
+	font-family: monospace;
+	border: none;
+	border-radius: .5em;
+	padding: .8em 0;
+	font-weight: 300;
+	font-size: 1rem;
+	height: 35px;
+	width: 100px;
+}
+
