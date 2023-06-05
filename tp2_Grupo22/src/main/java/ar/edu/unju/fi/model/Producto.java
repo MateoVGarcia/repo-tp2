@@ -21,8 +21,8 @@ public class Producto {
 	
 	@NotNull(message = "El precio es obligatorio")
 	@DecimalMin(value = "3.0", message = "El precio debe ser mayor a 3 pesos")
-	@DecimalMax(value = "900000.0", message = "El precio debe ser menor o igual a 900000 pesos")
-	private Double precio;
+    @DecimalMax(value = "900000.0", message = "El precio debe ser menor o igual a 900000 pesos")
+	private float precio;
 	
 	private String categoria;
 	
@@ -37,7 +37,7 @@ public class Producto {
 	}
 	
 	//Contructor parametrizado
-	public Producto(String nombre, int codigo, double precio, String categoria, int descuento) {
+	public Producto(String nombre, int codigo, float precio, String categoria, int descuento) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.precio = precio;
@@ -73,13 +73,13 @@ public class Producto {
 
 
 
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
 
 
-	public void setPrecio(double precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 

@@ -12,7 +12,7 @@
 	
 </head>
 
-<body class="body_consejo-nuevo">
+<body class="body_producto-nuevo">
 		<div class=".container-fluid">
 			<header th:replace="~{layouts/header :: header}"></header>	
 			<div class="row">
@@ -24,17 +24,13 @@
 					
 						<form th:action="${edicion}?@{/productos/modificar}:@{/productos/guardar}" th:object="${producto}" method="post" id="nuevoproducto">
 						
-							<label for="categoria">Nombre</label><br>
+							<label for="nombre">Nombre</label><br>
 							<input type="text" id="nombre" name="producto_nombre" th:field="*{nombre}"  > <br>
 							<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 							
 							<label for="codigo">Codigo</label><br>
 							<input type="number" id="codigo" name="producto_codigo" th:field="*{codigo}"  > <br><br>
 							<div class="text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
-							
-							<label for="precio">Precio</label> <br>
-							<input type="number" step="0.01"id="precio" name="producto_precio" th:field="*{precio}" >
-							<div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
 							
 							<label for="categoria">Categoria</label>
 							<select class="form-control" name="categoria" id="categoria" >
@@ -47,7 +43,11 @@
 			               	
 			               	<label for="descuento">Descuento</label> <br>
 							<input type="number" step="0.01"id="descuento" name="producto_descuento" th:field="*{descuento}" >
-							<div class="text-danger" th:if="${#fields.hasErrors('descuento')}" th:errors="*{descuento}"></div>
+							<div class="text-danger" th:if="${#fields.hasErrors('descuento')}" th:errors="*{descuento}"></div><br>
+							
+							<label for="precio">Precio</label> <br>
+							<input type="number" step="0.01" id="precio" name="producto_precio" th:field="*{precio}" >
+							<div class="text-danger" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
 			               
 							<p><input type="submit" class="button" value='Guardar'></p>
 						</form>
