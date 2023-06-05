@@ -90,7 +90,7 @@
 
 </article> 
 
- <a id="agregaprodu" th:href="@{/productos/nuevo}">Agregar producto</a>
+ <a th:href="@{/productos/nuevo}" class="cons_button">Agregar Productos</a>
 <div id="contenido_producto" class="container">
    <div class="table-responsive">
      <table class="table table-hover table-sm">
@@ -128,14 +128,10 @@
         
      
         <td class="custom-button">        
- 		<a th:href="@{/productos/modificar/}+${Produ.codigo}">Editar</a>
-      	<form th:action="@{/productos/eliminar/{id}(id=${Produ.codigo})}" method="get">                       
-               </form>        
+ 		<a class="cons_button" th:href="@{/productos/modificar/}+${Produ.codigo}">Editar</a>
+		<a class="cons_button" th:href="@{/productos/eliminar/}+${Produ.codigo}">Eliminar</a>     
         </td>
                     
-        <td class="custom-button">        
-        <form><button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">Eliminar</button></form>    
-                    </td>
     </tr>
   
  
