@@ -1,8 +1,10 @@
 package ar.edu.unju.fi.controller;
-
+  
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.FormSucursal;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/sucursales")
 	public class SucursalController{
 	
-	ListaSucursales listaSucursales = new ListaSucursales();
+	@Autowired
+	private ListaSucursales listaSucursales;
+	
+	@Autowired
+	private FormSucursal sucursal;
 	
 	@GetMapping("/listado")
 	public String getListaSucursalesPage(Model model) {
@@ -28,14 +35,19 @@ import ar.edu.unju.fi.model.FormSucursal;
 	@GetMapping("/nuevo")
 	public String getNuevaSucursalesPage1(Model model) {
 		boolean edicion = false ;
-		model.addAttribute("sucursal", new FormSucursal());
+		model.addAttribute("sucursal", sucursal );
 		model.addAttribute("edicion",edicion);
 		return "nueva_sucursal";
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView getGuardarSucursalPage(@ModelAttribute("sucursal")FormSucursal sucursal ) {
+	public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal")FormSucursal sucursal, BindingResult result ) {
 		ModelAndView modelView = new ModelAndView("sucursales");
+		if(result.hasErrors()) {
+			modelView.setViewName("nueva_sucursal");
+			modelView.addObject("sucursal", sucursal);
+			return modelView;
+		}
 		listaSucursales.getSucursales().add(sucursal);
 		modelView.addObject("sucursales", listaSucursales.getSucursales());
 		return modelView;
@@ -68,7 +80,7 @@ import ar.edu.unju.fi.model.FormSucursal;
 					sucu.setFechaInicio(sucursal.getFechaInicio());
 					sucu.setEmail(sucursal.getEmail());
 					sucu.setTelefono(sucursal.getTelefono());
-					
+					sucu.setEmpleados(sucursal.getEmpleados());
 				}
 			}
 			return "redirect:/sucursales/listado";
