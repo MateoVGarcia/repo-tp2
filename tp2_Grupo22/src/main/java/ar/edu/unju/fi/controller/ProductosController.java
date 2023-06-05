@@ -39,11 +39,11 @@ public String getNuevoProductoPage(Model model) {
 }
 
 @GetMapping("/modificar/{codigo}")
-public String getModificarProductosPage(Model model,@PathVariable(value="codigo")String cod){
+public String getModificarProductosPage(Model model,@PathVariable(value="codigo")int cod){
 	boolean edicion = true;
 	Producto productoEncontrado = producto;
 	for(Producto prod : listaProductos.getProductos()) {
-		if(prod.getCategoria().equals(cod)) {
+		if(prod.getCodigo()==(cod)) {
 			productoEncontrado = prod;
 			break;
 		}
@@ -59,8 +59,6 @@ public String getModificarProductosPage(Model model,@PathVariable(value="codigo"
 public String modificarProducto(@ModelAttribute("producto")Producto producto) {
 	for(Producto prod: listaProductos.getProductos()) { 
 		if(prod.getCodigo()==(producto.getCodigo())) {
-			
-			
 			prod.setNombre(producto.getNombre());
 			prod.setCodigo(producto.getCodigo());
 			prod.setPrecio(producto.getPrecio());
