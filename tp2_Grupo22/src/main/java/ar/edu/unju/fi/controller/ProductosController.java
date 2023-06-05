@@ -1,16 +1,22 @@
 package ar.edu.unju.fi.controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.*;
+
+import ar.edu.unju.fi.listas.*;
 import ar.edu.unju.fi.model.Producto;
-import ar.edu.unju.fi.listaProducto.*;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/productos")
 
 public class ProductosController {
 	
+	@Autowired
+	private Producto Productos;
 
 	//Se muestra el listado de productos
 	@GetMapping("/listado")
@@ -30,8 +36,11 @@ public class ProductosController {
 
 	  //Guardar, se usa en caso de editar o de agregar un nuevo producto
 	    @PostMapping("/guardar")
-	    public String guardarProducto(@ModelAttribute("producto") Producto producto) {
-	        ModelAndView modelView= new ModelAndView("productos");
+	    public String guardarProducto(@Valid @ModelAttribute("producto")  Producto producto, BindingResult result) {
+	    	if (result.hasErrors()) {
+	    		return "nuevo_producto";
+            }
+	    	ModelAndView modelView= new ModelAndView("productos");
 	    	listaproductos.setProductos(producto);
 	    	modelView.addObject("productos", listaproductos.getProductos());
 	        return "redirect:/productos/listado";
@@ -73,6 +82,7 @@ public class ProductosController {
         return "redirect:/productos/listado";
     }
 }
+
 
 
 
