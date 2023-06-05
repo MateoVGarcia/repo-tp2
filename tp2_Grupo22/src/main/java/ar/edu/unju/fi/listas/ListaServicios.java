@@ -13,7 +13,7 @@ public class ListaServicios {
 	private List<Servicio> servicios;
 		
 		public ListaServicios() {
-			servicios = new ArrayList<Servicio>();
+		servicios = new ArrayList<Servicio>();
 		servicios.add(new Servicio("Lunes","Mateo Garcia",9,12));	
 		servicios.add(new Servicio("Martes","Joaquin Burgos",16,20));	
 		servicios.add(new Servicio("Miercoles","Araceli Lopez",9,12));	
