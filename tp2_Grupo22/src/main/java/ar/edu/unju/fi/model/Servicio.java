@@ -18,8 +18,8 @@ public class Servicio {
 	@Min(value=9, message="La hora mínima para empezar un horario de un paseador son a las 9")
 	@Max(value=22, message="La hora máxima para empezar un horario de un paseador son a las 22")
 	private int horainicio;
-	@Min(value=10, message="La hora mínima para terminar un horario de un paseador son a las 9")
-	@Max(value=24, message="La hora máxima para terminar un horario de un paseador son a las 22")
+	@Min(value=10, message="La hora mínima para terminar un horario de un paseador son a las 10")
+	@Max(value=24, message="La hora máxima para terminar un horario de un paseador son a las 24")
 	private int horafin;
 	
 	
