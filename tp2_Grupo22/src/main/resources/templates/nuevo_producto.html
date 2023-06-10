@@ -24,7 +24,7 @@
     		<form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
       	<div class="mb-3">
         	<label class="form-label" for="nombre">Nombre</label><br>
-							<input type="text" id="nombre" name="producto_nombre" th:field="*{nombre}"  > <br>
+							<input type="text" id="nombre" name="producto_nombre" th:field="*{nombre}"> <br>
 							<div class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
       	</div>
       	<div class="mb-3">
