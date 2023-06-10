@@ -32,9 +32,11 @@
 
 .main_header img{
 		border-radius: 50%;
-		max-height: 50%;
-    	max-width: 50%;
-		border: 0.3em solid black;
+		height: 5%;
+		width: 5%;
+		float: left;
+		margin-left: 0.5em;
+		border: 0.3em solid black;
 }
 .main_header img, h1{
 	display: inline-block;
@@ -135,6 +137,20 @@
 	font-size: 40px;
 	text-align: center;
 	margin: auto;
+}
+
+.cons_table{
+	text-align:center;
+	margin-left:25em;
+}
+
+.cons_button{
+	text-decoration:none;
+	color:white;
+	border:6px solid #FFB2A3;
+	background-color: #FFB2A3;
+	border-radius:8px;
+	margin-bottom:5em;
 }
 .gatos{
 	text-align: center;
@@ -280,6 +296,10 @@
 #cuerpoproducto{
     background-color: #fff3e8;
     font-family: Arial;
+    padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	
 }
 
 #tituloproducto h1{
@@ -334,7 +354,14 @@
 .col-bg{
 	background-position: left left;
 }
-*
+
+.body_producto-nuevo{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
 #nuevoprodu{
 	font-size: 20px;
 	list-style: none;
@@ -380,7 +407,7 @@
 
 #nuevoprodu form p input{
 border: solid #8f6277; /*anchura, estilo y color borde*/
-padding: 5px; /*espacio alrededor texto*/
+padding: 0px; /*espacio alrededor texto*/
 background-color: #edbad1; /*color botÃ³n*/
 color: black; /*color texto*/
 text-decoration: none; /*decoraciÃ³n texto*/
@@ -424,22 +451,21 @@ border-radius: 50px; /*bordes redondos*/
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 
-    .custom-button:hover {
+    .custom-button a:hover {
       background-color: #f062ab;
       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      color: white;
     }
 
 
 
 .custom-button a {
-border: solid #8f6277; /*anchura, estilo y color borde*/
-padding: 1px; /*espacio alrededor texto*/
-background-color: #edbad1; /*color botón*/
-color: black; /*color texto*/
-text-decoration: none; /*decoración texto*/
-text-transform: uppercase; /*capitalización texto*/
-font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-border-radius: 5px; /*bordes redondos*/
+margin-top: 0px;
+	margin-bottom: 50px;
+	text-decoration:none;
+	color: black;
+	margin-right: 10px;
+	margin-left: 0px;
 }
 
 .custom-button form button{
@@ -620,4 +646,3 @@ iframe {
 	height: 35px;
 	width: 100px;
 }
-
