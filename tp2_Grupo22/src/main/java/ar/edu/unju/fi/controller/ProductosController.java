@@ -5,9 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.*;
-
-import ar.edu.unju.fi.listaProducto.ListaProductos;
 import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.service.IProductoService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -15,16 +14,14 @@ import jakarta.validation.Valid;
 public class ProductosController {
 	
 	@Autowired
-	private Producto producto;
+	private IProductoService productoService;
 	
-	@Autowired 
-	private  ListaProductos listaProductos;
 
 	
 	//Pagina con el listado de los productgos 
 @GetMapping("/listado")
 public String getProductosPage(Model model) {
-	model.addAttribute("productos", listaProductos.getProductos());
+	model.addAttribute("productos", productoService.getListaP());
 	return "productos";
 }
 
@@ -32,74 +29,51 @@ public String getProductosPage(Model model) {
 	//Pagina para crear un producto nuevo
 @GetMapping("/nuevo")
 public String getNuevoProductoPage(Model model) {
-	boolean edicion = false ;
-	model.addAttribute("producto", producto);
-	model.addAttribute("edicion",edicion);
-	return "nuevo_producto";
+    boolean edicion = false ;
+    Producto producto = new Producto(); // Crear un nuevo objeto Producto
+    model.addAttribute("producto", producto);
+    model.addAttribute("edicion", edicion);
+    return "nuevo_producto";
 }
 
+//Página para modificar un producto
 @GetMapping("/modificar/{codigo}")
-public String getModificarProductosPage(Model model,@PathVariable(value="codigo")int cod){
-	boolean edicion = true;
-	Producto productoEncontrado = producto;
-	for(Producto prod : listaProductos.getProductos()) {
-		if(prod.getCodigo()==(cod)) {
-			productoEncontrado = prod;
-			break;
-		}
-	}
-	
-	model.addAttribute("producto", productoEncontrado);
-	model.addAttribute("edicion",edicion);
-	
-	return "nuevo_producto";	
+public String getModificarProductosPage(Model model, @PathVariable(value = "codigo") int cod) {
+    boolean edicion = true;
+    Producto productoEncontrado = productoService.eliminarProducto(cod);
+    if (productoEncontrado == null) {
+        return "redirect:/productos/listado";
+    }
+    model.addAttribute("producto", productoEncontrado);
+    model.addAttribute("edicion", edicion);
+    return "nuevo_producto";
 }
+
 
 @PostMapping("/modificar")
-public String modificarProducto(@ModelAttribute("producto")Producto producto) {
-	for(Producto prod: listaProductos.getProductos()) { 
-		if(prod.getCodigo()==(producto.getCodigo())) {
-			prod.setNombre(producto.getNombre());
-			prod.setCodigo(producto.getCodigo());
-			prod.setPrecio(producto.getPrecio());
-			prod.setCategoria(producto.getCategoria());
-			prod.setDescuento(producto.getDescuento());
-		}
-	}
-	return "redirect:/productos/listado";
+public String modificarProducto(@ModelAttribute("producto") Producto producto) {
+    productoService.modificarProducto(producto);
+    return "redirect:/productos/listado";
 }
 
-	//Pagina de guardado de los productos
+//Método para guardar o modificar un producto
 @PostMapping("/guardar")
-public ModelAndView getGuardarProductoPage(@Valid @ModelAttribute("producto")Producto producto, BindingResult result) {
-	ModelAndView modelView = new ModelAndView("productos");
-	if(result.hasErrors()) {
-		modelView.setViewName("nuevo_producto");
-		modelView.addObject("producto", producto);
-		return modelView;
-	}
-	listaProductos.getProductos().add(producto);
-	modelView.addObject("productos", listaProductos.getProductos());
-	return modelView;
+public ModelAndView guardarProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result) {
+    ModelAndView modelView = new ModelAndView("productos");
+    if (result.hasErrors()) {
+        modelView.setViewName("nuevo_producto");
+        modelView.addObject("producto", producto);
+        return modelView;
+    }
+    productoService.guardarProducto(producto);
+    modelView.addObject("productos", productoService.getListaP());
+    return modelView;
 }
 
-	//Pagina para eliminar producto
+//Página para eliminar un producto
 @GetMapping("/eliminar/{codigo}")
-public String eliminarProducto(@PathVariable(value="codigo") int cod) {
-	for(Producto prod: listaProductos.getProductos()) {
-		if(prod.getCodigo()==(cod)) {
-			listaProductos.getProductos().remove(prod);
-			break;
-			
-		}
-	}
-	
-	 return"redirect:/productos/listado";
+public String eliminarProducto(@PathVariable(value = "codigo") int cod) {
+    productoService.eliminarProducto(cod);
+    return "redirect:/productos/listado";
 }
-
 }
-
-
-
-
-	
