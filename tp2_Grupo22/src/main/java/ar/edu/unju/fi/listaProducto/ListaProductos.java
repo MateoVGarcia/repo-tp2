@@ -1,10 +1,7 @@
-package ar.edu.unju.fi.listaProducto;
+package ar.edu.unju.fi.listas;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.ArrayList;
 import ar.edu.unju.fi.model.Producto;
 
