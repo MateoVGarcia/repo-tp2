@@ -3,61 +3,68 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
-	
 	<meta charset="UTF-8">
-	<title>Servicios</title>
+	<title>Servicio de Paseos</title>
 	<link rel="stylesheet" th:href="@{../../css/estilos.css}">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 
-<body class="body_consejo-nuevo">
-		<div class=".container-fluid">
+<body class="body_sucursales-paseo">
+		<div class="container">
 			<header th:replace="~{layouts/header :: header}"></header>	
-			<div class="row">
-					<section>
+			<div class="row justify-content-center">
+			<div class="col-md-6">
+				<section class="text-center">
+					<h1 th:text="${edicion}?'Modificar Servicio' : 'Nuevo Servicio'"></h1>
+					
+					<form th:action="${edicion}?@{/servicios/modificar}:@{/servicios/guardar}" th:object="${servicio}" method="post" id="nuevoservicio">
+					
+					<div class="form-group mb-3">
+						<label for="dia">Día</label><br>
+						<select id="dia"name="servicio_dia" th:field="*{dia}" class="form-control" >
+							<option value="Lunes">Lunes</option>
+							<option value="Martes">Martes</option>
+							<option value="Miercoles">Miercoles</option>
+							<option value="Jueves">Jueves</option>
+							<option value="Viernes">Viernes</option>
+						</select>
+						<div class="text-danger" th:if="${#fields.hasErrors('dia')}" th:errors="*{dia}"></div>
+					</div>
 					
 					
-					
-						<h1 th:text="${edicion}?'Modificar Servicio' : 'Nuevo Servicio'"></h1>
-					
-						<form th:action="${edicion}?@{/servicios/modificar}:@{/servicios/guardar}" th:object="${servicio}" method="post" id="nuevoservicio">
-						
-							<label for="dia">Día</label><br>
-							<select id="dia"name="servicio_dia" th:field="*{dia}" >
-								<option value="Lunes">Lunes</option>
-								<option value="Martes">Martes</option>
-								<option value="Miercoles">Miercoles</option>
-								<option value="Jueves">Jueves</option>
-								<option value="Viernes">Viernes</option>
-							</select><br><br>
-							<div class="text-danger" th:if="${#fields.hasErrors('dia')}" th:errors="*{dia}"></div>
+					<div class="form-group mb-3">
+						<label for="paseador">Paseador</label>
+						<input type="text" id="paseador" th:field="*{paseador}" class="form-control mb-3 ">
+						<div class="text-danger" th:if="${#fields.hasErrors('paseador')}" th:errors="*{paseador}"></div>
+					</div>
 							
-							<label for="paseador">Paseador</label><br>
-							<input type="text" id="paseador" name="servicio_paseador" th:field="*{paseador}"  > <br><br>
-							<div class="text-danger" th:if="${#fields.hasErrors('paseador')}" th:errors="*{paseador}"></div>
 							
-							<label for="horainicio">Hora de inicio</label> <br>
-							<input type="number" id="horainicio" name="servicio_horainicio" th:field="*{horainicio}" ><br>
-							<div class="text-danger" th:if="${#fields.hasErrors('horainicio')}" th:errors="*{horainicio}"></div>
-							
-							<label for="horafin">Hora de finalización</label> <br>
-							<input type="number" id="horafin" name="servicio_horafin" th:field="*{horafin}" >
-							<div class="text-danger" th:if="${#fields.hasErrors('horafin')}" th:errors="*{horafin}"></div>
-							<p><input type="submit" class="button" value='Guardar'></p>
-						</form>
-							
+					<div class="form-group mb-3">	
+						<label for="horainicio">Hora de inicio</label> <br>
+						<input type="number" id="horainicio" name="servicio_horainicio" th:field="*{horainicio}" class="form-control mb-3" >
+						<div class="text-danger" th:if="${#fields.hasErrors('horainicio')}" th:errors="*{horainicio}"></div>
+					</div>
 					
-						
-						<br><br>
-		
-				
+					
+					<div class="form-group mb-3">	
+						<label for="horafin">Hora de finalización</label> <br>
+						<input type="number" id="horafin" name="servicio_horafin" th:field="*{horafin}" class="form-control mb-3">
+						<div class="text-danger" th:if="${#fields.hasErrors('horafin')}" th:errors="*{horafin}"></div>
+					</div>
+					
+					
+					<div class="text-center m-4">
+						<input type="submit" class="btn btn-lg btn-primary" value='Guardar'>
+					</div>
+					
+					</form>	
 					</section>
-					
+					</div>
 				</div>
 			<footer th:replace="~{layouts/footer :: footer}"></footer>
-	</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+		</div>
+	
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
-</html>  
+</html>
