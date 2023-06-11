@@ -26,9 +26,7 @@
 						
 							<label for="categoria">Categoria</label><br>
 							<select id="categoria"name="consejo_categoria" th:field="*{categoria}" >
-								<option value="Gatos">Gatos</option>
-								<option value="Perros">Perros</option>
-								<option value="General">General</option>
+							<option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}"></option>
 							</select><br><br>
 							<div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
 							
