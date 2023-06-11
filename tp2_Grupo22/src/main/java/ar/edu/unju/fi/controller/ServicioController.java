@@ -46,8 +46,8 @@ public String getNuevoPage(Model model) {
 //Método para obtener la página de modificación de un servicio existente
 @GetMapping("/modificar/{paseador}")
 public String getModificarPage(Model model,@PathVariable(value="paseador")String pas){
-	boolean edicion = true;
 	Servicio servicioEncontrado = servicioService.getBy(pas);
+	boolean edicion = true;
 	model.addAttribute("servicio", servicioEncontrado);
 	model.addAttribute("edicion",edicion);	
 	return "nuevo_servicio";	
