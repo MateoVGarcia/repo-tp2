@@ -11,9 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import ar.edu.unju.fi.listas.ListaServicios;
-import ar.edu.unju.fi.model.Consejo;
 import ar.edu.unju.fi.model.Servicio;
+import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -21,61 +20,55 @@ import jakarta.validation.Valid;
 public class ServicioController {
 	
 	@Autowired
-	ListaServicios listaServicios;
+	private IServicioService servicioService;
  
-	@Autowired
-	private Servicio servicio;
-	
-	//Pagina con el listado de los consejos (Cada uno está separado por categoría con th:if)
+
+// Método para obtener la página de listado de servicios
 @GetMapping("/listado")
 public String getServiciosPage(Model model) {
-	model.addAttribute("servicios", listaServicios.getServicios());
+	model.addAttribute("servicios", servicioService.getListaServicio());
 	return "servicios";
 }
 
 
-	//Pagina para crear un consejo nuevo
+
+//Método para obtener la página de creación de un nuevo servicio
 @GetMapping("/nuevo")
 public String getNuevoPage(Model model) {
 	boolean edicion = false ;
-	model.addAttribute("servicio",servicio );
+	model.addAttribute("servicio", servicioService.getServicio());
 	model.addAttribute("edicion",edicion);
 	return "nuevo_servicio";
 }
 
+
+
+//Método para obtener la página de modificación de un servicio existente
 @GetMapping("/modificar/{paseador}")
 public String getModificarPage(Model model,@PathVariable(value="paseador")String pas){
+	Servicio servicioEncontrado = servicioService.getBy(pas);
 	boolean edicion = true;
-	Servicio servicioEncontrado = new Servicio();
-	for(Servicio serv : listaServicios.getServicios()) {
-		if(serv.getPaseador().equals(pas)) {
-			servicioEncontrado = serv;
-			break;
-		}
-	}
-	
 	model.addAttribute("servicio", servicioEncontrado);
-	model.addAttribute("edicion",edicion);
-	
+	model.addAttribute("edicion",edicion);	
 	return "nuevo_servicio";	
 }
 
+
+
+//Método para procesar la modificación de un servicio
 @PostMapping("/modificar")
-public String modificarConsejo(@ModelAttribute("servicio")Servicio servicio ) {
-	for(Servicio serv: listaServicios.getServicios()) { 
-		if(serv.getPaseador().equals(servicio.getPaseador())) {
-			
-			
-			serv.setDia(servicio.getDia());
-			serv.setPaseador(servicio.getPaseador());
-			serv.setHorainicio(servicio.getHorainicio());
-			serv.setHorafin(servicio.getHorafin());
-		}
-	}
+public String modificarServicio(@ModelAttribute("servicio") @Valid Servicio servicio, BindingResult result, Model model) {
+	 if (result.hasErrors()) {
+		 model.addAttribute("edicion", true);
+		 return "nuevo_servicio";
+	  }
+	servicioService.modificarServicio(servicio);
 	return "redirect:/servicios/listado";
 }
 
-	//Pagina de guardado de los consejos
+	
+
+// Método para guardar un nuevo servicio
 @PostMapping("/guardar")
 public ModelAndView getGuardarServiciosPage(@Valid @ModelAttribute("servicio")Servicio servicio, BindingResult result) {
 	ModelAndView modelView = new ModelAndView("servicios");
@@ -84,22 +77,18 @@ public ModelAndView getGuardarServiciosPage(@Valid @ModelAttribute("servicio")Se
 		modelView.addObject("servicio", servicio);
 		return modelView;
 	}
-	listaServicios.getServicios().add(servicio);
-	modelView.addObject("servicios", listaServicios.getServicios());
+	servicioService.guardarServicio(servicio);
+	modelView.addObject("servicios", servicioService.getListaServicio());
 	return modelView;
 }
 
-	//Pagina para eliminar consejos
+
+
+//Método para eliminar un servicio
 @GetMapping("/eliminar/{paseador}")
 public String eliminarServicio(@PathVariable(value="paseador") String pas) {
-	for(Servicio serv: listaServicios.getServicios()) {
-		if(serv.getPaseador().equals(pas)) {
-			listaServicios.getServicios().remove(serv);
-			break;
-			
-		}
-	}
-	
+	Servicio servicioEncontrado = servicioService.getBy(pas); 
+	servicioService.eliminarServicio(servicioEncontrado);
 	 return"redirect:/servicios/listado";
 }
 
