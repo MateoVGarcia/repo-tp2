@@ -57,8 +57,9 @@ public String getModificarPage(Model model,@PathVariable(value="paseador")String
 
 //Método para procesar la modificación de un servicio
 @PostMapping("/modificar")
-public String modificarServicio(@ModelAttribute("servicio") @Valid Servicio servicio, BindingResult result ) {
+public String modificarServicio(@ModelAttribute("servicio") @Valid Servicio servicio, BindingResult result, Model model) {
 	 if (result.hasErrors()) {
+		 model.addAttribute("edicion", true);
 		 return "nuevo_servicio";
 	  }
 	servicioService.modificarServicio(servicio);
