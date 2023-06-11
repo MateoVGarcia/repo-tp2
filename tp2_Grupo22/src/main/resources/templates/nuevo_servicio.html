@@ -35,8 +35,8 @@
 					
 					<div class="form-group mb-3">
 						<label for="paseador">Paseador</label>
-						<input type="text" id="paseador" th:field="*{paseador}" class="form-control mb-3 ">
 						<div class="text-danger" th:if="${#fields.hasErrors('paseador')}" th:errors="*{paseador}"></div>
+						<input type="text" id="paseador" th:field="*{paseador}" class="form-control mb-3" >
 					</div>
 							
 							
