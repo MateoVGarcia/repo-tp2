@@ -18,7 +18,7 @@
 				<section class="text-center">
 					<h1 th:text="${edicion}?'Modificar Servicio' : 'Nuevo Servicio'"></h1>
 					
-					<form th:action="${edicion}?@{/servicios/modificar}:@{/servicios/guardar}" th:object="${servicio}" method="post" id="nuevoservicio">
+					<form th:action="${edicion}?@{/servicios/modificar}:@{/servicios/guardar}" th:object="${servicio}" method="post" id="nuevoservicio" th:classappend="${#fields.hasErrors() ? 'was-validated' : ''}">
 					
 					<div class="form-group mb-3">
 						<label for="dia">Día</label><br>

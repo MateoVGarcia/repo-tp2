@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Component
@@ -15,12 +16,14 @@ public class Servicio {
 	@NotEmpty(message="El nombre del paseador no puede permanecer vacío")
 	@Size(min=5, max=40, message="El nombre del paseador debe contener entre 5 y 40 caracteres")
 	private String paseador;
+	@NotNull(message = "La hora de inicio no puede estar vacía")
 	@Min(value=9, message="La hora mínima para empezar un horario de un paseador son a las 9")
 	@Max(value=22, message="La hora máxima para empezar un horario de un paseador son a las 22")
-	private int horainicio;
+	private Integer horainicio;
+	@NotNull(message = "La hora de inicio no puede estar vacía")
 	@Min(value=10, message="La hora mínima para terminar un horario de un paseador son a las 10")
 	@Max(value=24, message="La hora máxima para terminar un horario de un paseador son a las 24")
-	private int horafin;
+	private Integer horafin;
 	
 	
 	//Constructor sin parametros
@@ -29,7 +32,7 @@ public class Servicio {
 	}
 	
 	//Constructor parametrizado
-	public Servicio(String dia, String paseador, int horainicio, int horafin) {
+	public Servicio(String dia, String paseador, Integer horainicio, Integer horafin) {
 		this.dia=dia;
 		this.paseador=paseador;
 		this.horainicio=horainicio;
@@ -58,25 +61,25 @@ public class Servicio {
 		this.paseador = paseador;
 	}
 	
-	public int getHorainicio() {
+	public Integer getHorainicio() {
 		return horainicio;
 	}
 
 
 
-	public void setHorainicio(int horainicio) {
+	public void setHorainicio(Integer horainicio) {
 		this.horainicio = horainicio;
 	}
 	
 
 	
-	public int getHorafin() {
+	public Integer getHorafin() {
 		return horafin;
 	}
 
 
 
-	public void setHorafin(int horafin) {
+	public void setHorafin(Integer horafin) {
 		this.horafin = horafin;
 	}
 	

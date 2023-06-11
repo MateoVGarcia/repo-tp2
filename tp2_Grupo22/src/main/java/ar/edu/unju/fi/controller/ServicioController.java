@@ -70,7 +70,7 @@ public ModelAndView getGuardarServiciosPage(@Valid @ModelAttribute("servicio")Se
 	ModelAndView modelView = new ModelAndView("servicios");
 	if(result.hasErrors()) {
 		modelView.setViewName("nuevo_servicio");
-		modelView.addObject("servicio", servicioService.getServicio());
+		modelView.addObject("servicio", servicio);
 		return modelView;
 	}
 	servicioService.guardarServicio(servicio);
