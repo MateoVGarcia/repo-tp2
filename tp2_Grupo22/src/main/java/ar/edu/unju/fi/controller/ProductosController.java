@@ -40,7 +40,7 @@ public String getNuevoProductoPage(Model model) {
 @GetMapping("/modificar/{codigo}")
 public String getModificarProductosPage(Model model, @PathVariable(value = "codigo") int cod) {
     boolean edicion = true;
-    Producto productoEncontrado = productoService.eliminarProducto(cod);
+    Producto productoEncontrado = productoService.getBy(cod); // Utiliza el método getBy() para obtener el producto por su código
     if (productoEncontrado == null) {
         return "redirect:/productos/listado";
     }

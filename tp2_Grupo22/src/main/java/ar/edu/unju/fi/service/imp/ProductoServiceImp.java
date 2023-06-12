@@ -69,14 +69,14 @@ public class ProductoServiceImp implements IProductoService {
 
 	@Override
 	public Producto getBy(int codigo) {
-		Producto productoEncontrado = null;
-		for(Producto produ : listaProductos.getProductos()) {
-			if(produ.getNombre().equals(codigo)) {
-				productoEncontrado = produ;
-				break;
-			}
-		}
-		return productoEncontrado;
+	    Producto productoEncontrado = null;
+	    for (Producto produ : listaProductos.getProductos()) {
+	        if (produ.getCodigo() == codigo) {
+	            productoEncontrado = produ;
+	            break;
+	        }
+	    }
+	    return productoEncontrado;
 	}
 
 	
