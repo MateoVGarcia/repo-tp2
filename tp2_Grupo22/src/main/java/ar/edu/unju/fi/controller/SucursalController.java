@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.listas.ListaSucursales;
 import ar.edu.unju.fi.model.FormSucursal;
+import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
@@ -26,10 +27,13 @@ public class SucursalController {
     @Autowired
     private ISucursalService sucursalService;
     
+    @Autowired
+    private ICommonService commonService;
+
     /**
-     * Muestra la página de listado de sucursales.
-     * 
-     * @param model el modelo de la vista.
+     * Maneja la solicitud GET para mostrar la página de lista de sucursales.
+     *
+     * @param model el modelo para pasar datos a la vista.
      * @return el nombre de la vista "sucursales".
      */
     @GetMapping("/listado")
@@ -37,27 +41,28 @@ public class SucursalController {
         model.addAttribute("sucursales", listaSucursales.getSucursales());
         return "sucursales";
     }
-    
+
     /**
-     * Muestra la página para crear una nueva sucursal.
-     * 
-     * @param model el modelo de la vista.
+     * Maneja la solicitud GET para mostrar la página de creación de una nueva sucursal.
+     *
+     * @param model el modelo para pasar datos a la vista.
      * @return el nombre de la vista "nueva_sucursal".
      */
     @GetMapping("/nuevo")
     public String getNuevaSucursalPage(Model model) {
         boolean edicion = false;
         model.addAttribute("sucursal", sucursalService.getSucursal());
+        model.addAttribute("provincias", commonService.getProvinciaCategoria());
         model.addAttribute("edicion", edicion);
         return "nueva_sucursal";
     }
-    
+
     /**
-     * Guarda una nueva sucursal o actualiza una existente.
-     * 
-     * @param sucursal el objeto FormSucursal que contiene los datos de la sucursal.
-     * @param result el objeto BindingResult para validar los errores.
-     * @return un objeto ModelAndView que redirige a la vista "sucursales" o muestra la vista "nueva_sucursal" en caso de errores de validación.
+     * Maneja la solicitud POST para guardar una nueva sucursal.
+     *
+     * @param sucursal el objeto FormSucursal a guardar.
+     * @param result   el objeto BindingResult que contiene los resultados de la validación.
+     * @return un objeto ModelAndView con la vista y los datos del modelo.
      */
     @PostMapping("/guardar")
     public ModelAndView getGuardarSucursalPage(@Valid @ModelAttribute("sucursal") FormSucursal sucursal, BindingResult result) {
@@ -65,17 +70,18 @@ public class SucursalController {
         if (result.hasErrors()) {
             modelView.setViewName("nueva_sucursal");
             modelView.addObject("sucursal", sucursal);
+            modelView.addObject("provincias", commonService.getProvinciaCategoria());
             return modelView;
         }
         sucursalService.guardar(sucursal);
         modelView.addObject("sucursales", sucursalService.getLista());
         return modelView;
     }
-    
+
     /**
-     * Muestra la página para modificar una sucursal existente.
-     * 
-     * @param model el modelo de la vista.
+     * Maneja la solicitud GET para mostrar la página de modificación de una sucursal existente.
+     *
+     * @param model  el modelo para pasar datos a la vista.
      * @param nombre el nombre de la sucursal a modificar.
      * @return el nombre de la vista "nueva_sucursal".
      */
@@ -85,26 +91,30 @@ public class SucursalController {
         boolean edicion = true;
         model.addAttribute("sucursal", sucursalEncontrada);
         model.addAttribute("edicion", edicion);
+        model.addAttribute("provincias", commonService.getProvinciaCategoria());
         return "nueva_sucursal";
     }
-    
+
     /**
-     * Modifica una sucursal existente.
-     * 
-     * @param sucursal el objeto FormSucursal que contiene los datos modificados de la sucursal.
-     * @return el nombre de la vista "redirect:/sucursales/listado".
+     * Maneja la solicitud POST para modificar una sucursal existente.
+     *
+     * @param sucursal el objeto FormSucursal modificado.
+     * @param result   el objeto BindingResult que contiene los resultados de la validación.
+     * @param model    el modelo para pasar datos a la vista.
+     * @return el nombre de la vista "redirect:/sucursales/listado" para redirigir a la lista de sucursales.
      */
     @PostMapping("/modificar")
-    public String modificarSucursal(@ModelAttribute("sucursal") FormSucursal sucursal) {
+    public String modificarSucursal(@Valid @ModelAttribute("sucursal") FormSucursal sucursal, BindingResult result, Model model) {
         sucursalService.modificar(sucursal);
+        model.addAttribute("provincias", commonService.getProvinciaCategoria());
         return "redirect:/sucursales/listado";
     }
-    
+
     /**
-     * Elimina una sucursal existente.
-     * 
+     * Maneja la solicitud GET para eliminar una sucursal existente.
+     *
      * @param nombre el nombre de la sucursal a eliminar.
-     * @return el nombre de la vista "redirect:/sucursales/listado".
+     * @return el nombre de la vista "redirect:/sucursales/listado" para redirigir a la lista de sucursales.
      */
     @GetMapping("/eliminar/{nombre}")
     public String eliminarSucursal(@PathVariable(value = "nombre") String nombre) {
