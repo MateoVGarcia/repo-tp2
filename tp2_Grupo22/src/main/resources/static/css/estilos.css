@@ -32,10 +32,8 @@
 
 .main_header img{
 		border-radius: 50%;
-		height: 5%;
-		width: 5%;
-		float: left;
-		margin-left: 0.5em;
+max-height: 50%;
+max-width: 50%;
 		border: 0.3em solid black;
 }
 .main_header img, h1{
