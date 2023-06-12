@@ -11,16 +11,16 @@ import jakarta.validation.Valid;
 public interface IConsejoService {
 
 
-	
+	//Listado de Consejos
 	List<Consejo> getConsejos();
-
+	//Guardado de consejos
 	void guardar(@Valid Consejo consejo);
-	
+	//Obtener un consejo segun su descripcion
 	Consejo getBy(String descripcion);
-	
+	//Modificar un consejo
 	void modificar(Consejo consejo);
-	
+	//Eliminar un consejo
 	void eliminar(Consejo consejoEncontrado);
-	
+	//Generar un nuevo consejo
 	Consejo getConsejo();
 }

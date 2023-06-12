@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.*;
 import ar.edu.unju.fi.model.Producto;
+import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IProductoService;
 import jakarta.validation.Valid;
 
@@ -16,6 +17,8 @@ public class ProductosController {
 	@Autowired
 	private IProductoService productoService;
 	
+	@Autowired
+	private ICommonService commonService;
 
 	
 	//Pagina con el listado de los productgos 
@@ -32,6 +35,7 @@ public String getNuevoProductoPage(Model model) {
     boolean edicion = false ;
     Producto producto = new Producto(); // Crear un nuevo objeto Producto
     model.addAttribute("producto", producto);
+	model.addAttribute("categorias", commonService.getProductoCategoria());
     model.addAttribute("edicion", edicion);
     return "nuevo_producto";
 }
@@ -39,14 +43,15 @@ public String getNuevoProductoPage(Model model) {
 //Página para modificar un producto
 @GetMapping("/modificar/{codigo}")
 public String getModificarProductosPage(Model model, @PathVariable(value = "codigo") int cod) {
-    boolean edicion = true;
-    Producto productoEncontrado = productoService.getBy(cod); // Utiliza el método getBy() para obtener el producto por su código
-    if (productoEncontrado == null) {
-        return "redirect:/productos/listado";
-    }
-    model.addAttribute("producto", productoEncontrado);
-    model.addAttribute("edicion", edicion);
-    return "nuevo_producto";
+  boolean edicion = true;
+  Producto productoEncontrado = productoService.getBy(cod);
+  if (productoEncontrado == null) {
+      return "redirect:/productos/listado";
+  }
+  model.addAttribute("producto", productoEncontrado);
+  model.addAttribute("categorias", commonService.getProductoCategoria());
+  model.addAttribute("edicion", edicion);
+  return "nuevo_producto";
 }
 
 
@@ -59,15 +64,22 @@ public String modificarProducto(@ModelAttribute("producto") Producto producto) {
 //Método para guardar o modificar un producto
 @PostMapping("/guardar")
 public ModelAndView guardarProducto(@Valid @ModelAttribute("producto") Producto producto, BindingResult result) {
-    ModelAndView modelView = new ModelAndView("productos");
-    if (result.hasErrors()) {
-        modelView.setViewName("nuevo_producto");
-        modelView.addObject("producto", producto);
-        return modelView;
-    }
-    productoService.guardarProducto(producto);
-    modelView.addObject("productos", productoService.getListaP());
-    return modelView;
+  ModelAndView modelView = new ModelAndView("productos");
+  if (result.hasErrors()) {
+      modelView.setViewName("nuevo_producto");
+      modelView.addObject("producto", producto);
+      modelView.addObject("categorias", commonService.getProductoCategoria());
+      return modelView;
+  }
+
+  if (producto.getCodigo() != 0) { // Verifica si el código del producto es diferente de cero (indicando que es un producto existente)
+      productoService.modificarProducto(producto);
+  } else {
+      productoService.guardarProducto(producto);
+  }
+
+  modelView.addObject("productos", productoService.getListaP());
+  return modelView;
 }
 
 //Página para eliminar un producto

@@ -34,12 +34,9 @@
       	</div>
       	<div class="user-input-box">
            	<label class="form-label" for="categoria">Categoria</label>
-							<select class="form-control" name="categoria" id="categoria" >
-			              	<option th:field="*{categoria}"  value="Juguete">Juguete</option>
-			               	<option th:field="*{categoria}"  value="Mueble">Mueble</option>
-			               	<option th:field="*{categoria}"  value="Mascota">Mascota</option>
-			               	<option th:field="*{categoria}"  value="Comida">Comida</option>
-			               	</select>
+							<select class="form-control" name="categoria" id="categoria" th:field="*{categoria}"  >
+							<option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}"></option>
+							</select>
 			               	<div class="text-danger" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
            
       	</div>

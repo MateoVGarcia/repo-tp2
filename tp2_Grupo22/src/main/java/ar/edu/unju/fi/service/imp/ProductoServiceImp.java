@@ -22,17 +22,20 @@ public class ProductoServiceImp implements IProductoService {
         this.producto = producto;
     }
 	
+    //Devuelve el listado de productos
     @Override
 	public List<Producto> getListaP() {
 		// TODO Auto-generated method stub
 		return listaProductos.getProductos();
 	}
-
+    
+    //Guarda un producto nuevo en la lista existente
 	@Override
 	public void guardarProducto(@Valid Producto producto) {
 		listaProductos.getProductos().add(producto);		
 	}
-
+	
+	//Modifica un producto existente
 	@Override
     public void modificarProducto(Producto producto) {
         for (Producto prod : listaProductos.getProductos()) {
@@ -46,7 +49,8 @@ public class ProductoServiceImp implements IProductoService {
             }
         }
     }
-
+	
+	//Elimina un producto a partir de su codigo
 	@Override
 	public Producto eliminarProducto(int codigo) {
         Iterator<Producto> iterator = listaProductos.getProductos().iterator();
@@ -61,12 +65,13 @@ public class ProductoServiceImp implements IProductoService {
     }
 
 	
-
+	//Devuelve un producto nuevo
 	@Override
 	public Producto getProducto() {
 		return producto;
 	}
-
+	
+	//Devuelve un producto buscado según su código
 	@Override
 	public Producto getBy(int codigo) {
 	    Producto productoEncontrado = null;

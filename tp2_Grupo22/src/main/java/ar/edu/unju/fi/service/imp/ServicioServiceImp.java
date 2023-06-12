@@ -20,21 +20,21 @@ public class ServicioServiceImp implements IServicioService {
 	private Servicio servicio;
 	
 	
-
+	//Devuelve la lista de servicios
 	@Override
 	public List<Servicio> getListaServicio(){
 		return listaServicios.getServicios();
 	}
 	
 	
-	
+	//Guarda un servicio
 	@Override
 	public void guardarServicio(@Valid Servicio servicio) {
 		listaServicios.getServicios().add(servicio);
 	}
 
 	
-	
+	//Busca un servicio segun el nombre del paseador
 	@Override
 	public Servicio getBy(String pas) {
 		Servicio servicioEncontrado = null;
@@ -50,7 +50,7 @@ public class ServicioServiceImp implements IServicioService {
 	
 	
 	
-	
+	//Modifica un servicio 
 	@Override
 	public void modificarServicio(Servicio servicio) {
 		for(Servicio serv: listaServicios.getServicios()) { 
@@ -65,7 +65,7 @@ public class ServicioServiceImp implements IServicioService {
 	
 	
 	
-	
+	//Elimina un servicio
 	@Override
 	public void eliminarServicio(Servicio servicio) {
 		listaServicios.getServicios().remove(servicio);
@@ -73,7 +73,7 @@ public class ServicioServiceImp implements IServicioService {
 	
 	
 	
-	
+	//Devuelve un servicio nuevo
 	@Override
 	public Servicio getServicio() {
 		return servicio;

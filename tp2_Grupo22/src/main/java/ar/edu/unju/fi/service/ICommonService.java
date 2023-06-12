@@ -7,4 +7,6 @@ public interface ICommonService {
 	List<String>  getConsejoCategoria();
 	
 	List<String>  getProvinciaCategoria();
+			
+	List<String> getProductoCategoria();
 }
