@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.sevice.imp;
+package ar.edu.unju.fi.service.imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,16 +15,21 @@ public class ConsejoServiceImp implements IConsejoService {
 private Consejo consejo;
 @Autowired
 private ListaConsejos listaConsejos;
+
+//Devuelve el listado completo de consejos
 @Override
 public List<Consejo> getConsejos() {
 	return listaConsejos.getConsejos();
 }
+
+//Guarda un nuevo consejo en el listado de consejos
 @Override
 public void guardar(@Valid Consejo consejo) {
 	listaConsejos.getConsejos().add(consejo);
-	// TODO Auto-generated method stub
 	
 }
+
+//Obtiene un consejo existente a partir de su descripción
 @Override
 public Consejo getBy(String descripcion) {
 	Consejo consejoEncontrado = null;
@@ -36,6 +41,8 @@ public Consejo getBy(String descripcion) {
 	}
 	return consejoEncontrado;
 }
+
+//Modifica un consejo 
 @Override
 public void modificar(Consejo consejo) {
 	for(Consejo cons: listaConsejos.getConsejos()) { 
@@ -48,12 +55,15 @@ public void modificar(Consejo consejo) {
 	}
 	
 }
+
+//Elimina un consejo especificado
 @Override
 public void eliminar(Consejo consejoEncontrado) {
 	listaConsejos.getConsejos().remove(consejoEncontrado);
 	
 }
 
+//Devuelve un consejo nuevo
 @Override
 public Consejo getConsejo() {
 	return consejo;

@@ -32,10 +32,8 @@
 
 .main_header img{
 		border-radius: 50%;
-		height: 5%;
-		width: 5%;
-		float: left;
-		margin-left: 0.5em;
+max-height: 50%;
+max-width: 50%;
 		border: 0.3em solid black;
 }
 .main_header img, h1{
@@ -347,6 +345,16 @@
 }
 
 /*Productos/nuevo_producto*/
+.col-bg{
+	background-position: left left;
+}
+
+.body_producto-nuevo{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
 
 #nuevoprodu{
 	font-size: 20px;
@@ -360,12 +368,13 @@
     border: 5px solid #ff6961;
     border-bottom-style: dashed;
     color: black;
+    box-shadow: inset -2px 2px 2px white;
     
 }
 
 #nuevoprodu label{
 	font-size: 20px;
-	margin: 10px 0;
+	margin: 10px ;
 }
 
 #nuevoprodu input {
@@ -376,78 +385,108 @@
   margin: 10px 0;
   border: solid #ccc;
 }
+#nuevoprodu select {
+	
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  border: solid #ccc;
+  
+}
+
+#nuevoprodu select:hover{
+	background-color: #edbad1;
+	color: white;
+}
 
 #nuevoprodu form p input{
 border: solid #8f6277; /*anchura, estilo y color borde*/
-padding: 5px; /*espacio alrededor texto*/
-background-color: #edbad1; /*color botón*/
+padding: 0px; /*espacio alrededor texto*/
+background-color: #edbad1; /*color botÃ³n*/
 color: black; /*color texto*/
-text-decoration: none; /*decoración texto*/
-text-transform: uppercase; /*capitalización texto*/
-font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+text-decoration: none; /*decoraciÃ³n texto*/
+text-transform: uppercase; /*capitalizaciÃ³n texto*/
+font-family: 'Helvetica', sans-serif; /*tipografÃ­a texto*/
 border-radius: 50px; /*bordes redondos*/
 }
 
+
 #contenido_producto table{
-	background-color: #fdcae1;
-	text-align: left;
-	width: 40%;
-	border-collapse: collapse;
-	border: solid 1px green;
-	font-size: 15px;
-	font-family: comic sans;
+	border: solid 1px black;
+	background-color: white;
+	
 }
 
-#contenido_producto table tr th{
-	background-color: #e4a395;
-	border-bottom:solid 5px gray;
-	font-family: comic sans;
+#contenido_producto tr:hover{
+	background-color: black;
+	color: white;
+}
+
+#contenido_producto thead tr th{
+	background-color: #DFEB62;
+	text-align: center;
 	border-collapse: collapse;
 }
 
-#contenido_producto table tr td{
-	font-family: comic sans;
-	background-color: #fdcae1;
-	text-align: left;
-	width: 40%;
-	border-collapse: collapse;
-	border: inset;
+#contenido_producto td:hover{
+	background-color: #f062ab;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#contenido_producto table a{
-	border: solid #8f6277; /*anchura, estilo y color borde*/
+ .custom-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Helvetica', sans-serif; 
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    .custom-button a:hover {
+      background-color: #f062ab;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+      color: white;
+    }
+
+
+
+.custom-button a {
+margin-top: 0px;
+	margin-bottom: 50px;
+	text-decoration:none;
+	color: black;
+	margin-right: 10px;
+	margin-left: 0px;
+}
+
+.custom-button form button{
+	
 padding: 1px; /*espacio alrededor texto*/
 background-color: #edbad1; /*color botón*/
 color: black; /*color texto*/
 text-decoration: none; /*decoración texto*/
 text-transform: uppercase; /*capitalización texto*/
 font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-border-radius: 5px; /*bordes redondos*/
-}
-
-#contenido_producto table td form button{
-	border: solid #8f6277; /*anchura, estilo y color borde*/
-padding: 1px; /*espacio alrededor texto*/
-background-color: #edbad1; /*color botón*/
-color: black; /*color texto*/
-text-decoration: none; /*decoración texto*/
-text-transform: uppercase; /*capitalización texto*/
-font-family: 'Helvetica', sans-serif; /*tipografía texto*/
-border-radius: 5px; /*bordes redondos*/
-}
+border-radius: 5px; /*bordes redondos*/}
 
 #agregaprodu{
 	
 	font-size: 20px;
 	border: solid #8f6277; /*anchura, estilo y color borde*/
 padding: 1px; /*espacio alrededor texto*/
-background-color: #edbad1; /*color botón*/
+background-color: #edbad1; /*color botÃ³n*/
 color: black; /*color texto*/
-text-decoration: none; /*decoración texto*/
-text-transform: uppercase; /*capitalización texto*/
-font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+text-decoration: none; /*decoraciÃ³n texto*/
+text-transform: uppercase; /*capitalizaciÃ³n texto*/
+font-family: 'Helvetica', sans-serif; /*tipografÃ­a texto*/
 border-radius: 5px; /*bordes redondos*/
 }
+#agregaprodu:hover {
+      background-color: #f062ab;}
 
 
 
@@ -518,10 +557,10 @@ border-radius: 5px; /*bordes redondos*/
 	border: 1px solid #593a23;
 	border-radius: 5px;
 	padding: 17px;
-	width: 300px;
+	/*width: 300px;
 	position: absolute;
 	top: 45%;
-	Left: 37.5%;
+	Left: 37.5%;*/
 	background-color: #ffd4b1;
 }
 
@@ -558,7 +597,7 @@ font-family: cursive;
 	    
 }
 
-.producto_footer{
+/*.producto_footer{
     width: 100%;
     bottom: 0;
     background-color: black;
@@ -566,7 +605,7 @@ font-family: cursive;
     position: absolute;
     text-align: center;
     margin-top: auto;
-}
+}*/
 
 
 .image {
