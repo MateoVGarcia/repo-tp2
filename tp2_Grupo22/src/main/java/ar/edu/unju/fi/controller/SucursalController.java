@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.entity.FormSucursal;
 import ar.edu.unju.fi.listas.ListaSucursales;
-import ar.edu.unju.fi.model.FormSucursal;
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;

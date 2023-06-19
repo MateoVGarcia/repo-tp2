@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.Consejo;
+import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
@@ -20,6 +21,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/consejos")
 public class ConsejosController {
 	@Autowired
+	@Qualifier("consejoServiceImp")
 	private IConsejoService consejoService;
 	
 	@Autowired
@@ -44,10 +46,10 @@ public String getNuevoConsejoPage(Model model) {
 	return "nuevo_consejo";
 }
 
-@GetMapping("/modificar/{descripcion}")
-public String getModificarConsejosPage(Model model,@PathVariable(value="descripcion")String desc){
+@GetMapping("/modificar/{id}")
+public String getModificarConsejosPage(Model model,@PathVariable(value="id")Long id){
 	boolean edicion = true;
-	Consejo consejoEncontrado = consejoService.getBy(desc);
+	Consejo consejoEncontrado = consejoService.getBy(id);
 	model.addAttribute("consejo", consejoEncontrado);
 	model.addAttribute("categorias", commonService.getConsejoCategoria());
 	model.addAttribute("edicion",edicion);
@@ -56,9 +58,19 @@ public String getModificarConsejosPage(Model model,@PathVariable(value="descripc
 }
 
 @PostMapping("/modificar")
-public String modificarConsejo(@ModelAttribute("consejo")Consejo consejo) {
-	consejoService.modificar(consejo);
-	return "redirect:/consejos/listado";
+public ModelAndView getModificarConsejoPage(@Valid @ModelAttribute("consejo")Consejo consejo, BindingResult result) {
+	ModelAndView modelView = new ModelAndView("consejos");
+	boolean edicion = true;
+	if(result.hasErrors()) {
+		modelView.setViewName("nuevo_consejo");
+		modelView.addObject("consejo", consejo);
+		modelView.addObject("categorias", commonService.getConsejoCategoria());
+		modelView.addObject("edicion", edicion);
+		return modelView;
+	}
+	consejoService.guardar(consejo);
+	modelView.addObject("consejos", consejoService.getConsejos());
+	return modelView;
 }
 
 	//Pagina de guardado de los consejos
@@ -77,9 +89,9 @@ public ModelAndView getGuardarConsejoPage(@Valid @ModelAttribute("consejo")Conse
 }
 
 	//Pagina para eliminar consejos
-@GetMapping("/eliminar/{descripcion}")
-public String eliminarConsejo(@PathVariable(value="descripcion") String desc) {
-			Consejo consejoEncontrado = consejoService.getBy(desc);
+@GetMapping("/eliminar/{id}")
+public String eliminarConsejo(@PathVariable(value="id") Long id) {
+			Consejo consejoEncontrado = consejoService.getBy(id);
 			consejoService.eliminar(consejoEncontrado);
 
 	

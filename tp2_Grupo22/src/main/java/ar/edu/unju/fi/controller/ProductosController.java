@@ -5,7 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.*;
-import ar.edu.unju.fi.model.Producto;
+
+import ar.edu.unju.fi.entity.Producto;
 import ar.edu.unju.fi.service.ICommonService;
 import ar.edu.unju.fi.service.IProductoService;
 import jakarta.validation.Valid;
