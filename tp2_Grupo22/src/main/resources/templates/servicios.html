@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<title>Servicio de Paseos</title>
+	<title>Servicios</title>
 	<link rel="stylesheet" th:href="@{../css/estilos.css}">
 	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
@@ -42,8 +42,8 @@
 						<td th:text="${serv.paseador}"></td>
 						<td th:text="${serv.horainicio}+' a '+${serv.horafin}"></td>
 						<td class="d-flex justify-content-center">
-	 						<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/modificar/{paseador}(paseador=${serv.paseador})}">Editar</a>
-        					<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/eliminar/{paseador}(paseador=${serv.paseador})}">Eliminar</a>
+	 						<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/modificar/{id}(id=${serv.id})}">Editar</a>
+        					<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/eliminar/{id}(id=${serv.id})}">Eliminar</a>
         				</td>
         			</tr>
         			</tbody>

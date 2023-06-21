@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import ar.edu.unju.fi.model.Servicio;
+import ar.edu.unju.fi.entity.Servicio;
 import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 
@@ -20,6 +21,7 @@ import jakarta.validation.Valid;
 public class ServicioController {
 	
 	@Autowired
+	@Qualifier("servicioServiceImp")
 	private IServicioService servicioService;
  
 
@@ -44,9 +46,9 @@ public String getNuevoPage(Model model) {
 
 
 //Método para obtener la página de modificación de un servicio existente
-@GetMapping("/modificar/{paseador}")
-public String getModificarPage(Model model,@PathVariable(value="paseador")String pas){
-	Servicio servicioEncontrado = servicioService.getBy(pas);
+@GetMapping("/modificar/{id}")
+public String getModificarPage(Model model,@PathVariable(value="id")Long id){
+	Servicio servicioEncontrado = servicioService.getBy(id);
 	boolean edicion = true;
 	model.addAttribute("servicio", servicioEncontrado);
 	model.addAttribute("edicion",edicion);	
@@ -57,7 +59,7 @@ public String getModificarPage(Model model,@PathVariable(value="paseador")String
 
 //Método para procesar la modificación de un servicio
 @PostMapping("/modificar")
-public String modificarServicio(@ModelAttribute("servicio") @Valid Servicio servicio, BindingResult result, Model model) {
+public String modificarServicio(@Valid @ModelAttribute("servicio") Servicio servicio, BindingResult result, Model model) {
 	 if (result.hasErrors()) {
 		 model.addAttribute("edicion", true);
 		 return "nuevo_servicio";
@@ -85,9 +87,9 @@ public ModelAndView getGuardarServiciosPage(@Valid @ModelAttribute("servicio")Se
 
 
 //Método para eliminar un servicio
-@GetMapping("/eliminar/{paseador}")
-public String eliminarServicio(@PathVariable(value="paseador") String pas) {
-	Servicio servicioEncontrado = servicioService.getBy(pas); 
+@GetMapping("/eliminar/{id}")
+public String eliminarServicio(@PathVariable(value="id") Long id) {
+	Servicio servicioEncontrado = servicioService.getBy(id); 
 	servicioService.eliminarServicio(servicioEncontrado);
 	 return"redirect:/servicios/listado";
 }

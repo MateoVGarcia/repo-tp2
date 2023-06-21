@@ -1,8 +1,8 @@
 package ar.edu.unju.fi.service;
 
 import java.util.List;
-import ar.edu.unju.fi.model.Servicio;
-import jakarta.validation.Valid;
+
+import ar.edu.unju.fi.entity.Servicio;
 
 public interface IServicioService {
 	
@@ -10,10 +10,10 @@ public interface IServicioService {
 	List<Servicio> getListaServicio();
 	
 	//Guarda un nuevo Servicio
-	void guardarServicio(@Valid Servicio servicio);
+	void guardarServicio(Servicio servicio);
 	
 	//Obtiene un Servicio por su identificador.
-	Servicio getBy(String pas);
+	Servicio getBy(Long id);
 	
 	//Modifica un Servicio existente.
 	void modificarServicio(Servicio servicio);
