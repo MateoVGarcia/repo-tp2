@@ -53,6 +53,8 @@
 						<div class="text-danger" th:if="${#fields.hasErrors('horafin')}" th:errors="*{horafin}"></div>
 					</div>
 					
+					<input type="number" value=${id} name="servicio_id" class="d-none" th:field="*{id}">
+					
 					
 					<div class="text-center m-4">
 						<input type="submit" class="btn btn-lg btn-primary" value='Guardar'>
