@@ -13,7 +13,7 @@ public interface IServicioRepository extends CrudRepository <Servicio, Long>{
 	
 	public List<Servicio>findByEstado(boolean estado);
 	
-	@Query("SELECT s FROM Servicio s WHERE s.dia LIKE %?1%")
+	@Query("SELECT s FROM Servicio s WHERE s.dia LIKE %?1% AND s.estado = true")
 	public List<Servicio>findByDia(String diaClave);
 	
 }
