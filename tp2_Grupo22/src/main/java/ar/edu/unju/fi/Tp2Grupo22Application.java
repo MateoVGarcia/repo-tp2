@@ -29,6 +29,7 @@ public class Tp2Grupo22Application  implements CommandLineRunner {
 		servicio1.setDia("Lunes");
 		servicio1.setHorainicio(9);
 		servicio1.setHorafin(12);
+		servicio1.setCategoria("Paseos");
 		servicioRepository.save(servicio1);
 
 
@@ -38,6 +39,7 @@ public class Tp2Grupo22Application  implements CommandLineRunner {
 		servicio2.setDia("Martes");
 		servicio2.setHorainicio(16);
 		servicio2.setHorafin(20);
+		servicio2.setCategoria("Peluqueria");
 		servicioRepository.save(servicio2);
 		
 		
@@ -47,6 +49,7 @@ public class Tp2Grupo22Application  implements CommandLineRunner {
 		servicio3.setDia("Miercoles"); //fijarse
 		servicio3.setHorainicio(9);
 		servicio3.setHorafin(12);
+		servicio3.setCategoria("Entrenamiento");
 		servicioRepository.save(servicio3);
 		
 		
@@ -56,6 +59,7 @@ public class Tp2Grupo22Application  implements CommandLineRunner {
 		servicio4.setDia("Viernes"); //fijarse
 		servicio4.setHorainicio(16);
 		servicio4.setHorafin(20);
+		servicio4.setCategoria("Veternaria");
 		servicioRepository.save(servicio4);			
 	}	
 

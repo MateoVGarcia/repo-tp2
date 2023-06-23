@@ -7,7 +7,7 @@ import ar.edu.unju.fi.entity.Servicio;
 public interface IServicioService {
 	
 	//Obtiene la lista de todos los Servicios
-	List<Servicio> getListaServicio();
+	List<Servicio> getListaServicio(String diaClave);
 	
 	//Guarda un nuevo Servicio
 	void guardarServicio(Servicio servicio);

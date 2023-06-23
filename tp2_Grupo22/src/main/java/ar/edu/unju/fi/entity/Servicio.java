@@ -45,6 +45,10 @@ public class Servicio {
 	@Column(name="serv_hora_final", nullable = false)
 	private Integer horafin;
 	
+	@NotBlank(message="Debe elegir un tipo de servicio")
+	@Column(name="serv_categoria", nullable = false)
+	private String categoria;
+	
 	@Column(name="serv_estado")
 	private boolean estado;
 	
@@ -55,13 +59,13 @@ public class Servicio {
 	}
 	
 	//Constructor parametrizado
-	public Servicio(Long id, String dia, String paseador, Integer horainicio, Integer horafin) {
+	public Servicio(Long id, String dia,String paseador,Integer horainicio, Integer horafin, String categoria) {
 		this.dia = dia;
 		this.paseador = paseador;
 		this.horainicio = horainicio;
 		this.horafin = horafin;
+		this.categoria = categoria;
 	}
-	
 
 	//Getters y setters
 	public Long getId() {
@@ -117,6 +121,16 @@ public class Servicio {
 
 	
 	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
+
 	public boolean isEstado() {
 		return estado;
 	}
@@ -125,10 +139,10 @@ public class Servicio {
 		this.estado = estado;
 	}
 
-	
+
 	public String toString() {
 		return "Servicio [id=" + id + ", dia=" + dia + ", paseador=" + paseador + ", horainicio=" + horainicio
-				+ ", horafin=" + horafin + "]";
-	}	
+				+ ", horafin=" + horafin + ", categoria=" + categoria + "]";
+	}
 
 }

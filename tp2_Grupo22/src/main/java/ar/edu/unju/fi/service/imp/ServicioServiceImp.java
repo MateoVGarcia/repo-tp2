@@ -21,7 +21,10 @@ public class ServicioServiceImp implements IServicioService {
 	
 	//Devuelve la lista de servicios
 	@Override
-	public List<Servicio> getListaServicio(){
+	public List<Servicio> getListaServicio(String diaClave){
+		if(diaClave != null) {
+			return servicioRepository.findByDia(diaClave);
+		}
 		return servicioRepository.findByEstado(true);
 	}
 	
@@ -59,7 +62,7 @@ public class ServicioServiceImp implements IServicioService {
 	}
 	
 	
-	//Devuelve un servicio nuevo
+	//Devuelve un servicio
 	@Override
 	public Servicio getServicio() {
 		return servicio;
