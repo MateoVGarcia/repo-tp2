@@ -5,62 +5,45 @@ import java.util.List;
 
 import ar.edu.unju.fi.entity.Consejo;
 import ar.edu.unju.fi.listas.ListaConsejos;
+import ar.edu.unju.fi.repository.IConsejoRepository;
 import ar.edu.unju.fi.service.IConsejoService;
 import jakarta.validation.Valid;
 
 
-@Service
+@Service("consejoServiceImp")
 public class ConsejoServiceImp implements IConsejoService {
 @Autowired
 private Consejo consejo;
-@Autowired
-private ListaConsejos listaConsejos;
+@Autowired 
+private IConsejoRepository consejoRepository;
 
 //Devuelve el listado completo de consejos
 @Override
 public List<Consejo> getConsejos() {
-	return listaConsejos.getConsejos();
+	return consejoRepository.findByEstado(true);
 }
 
 //Guarda un nuevo consejo en el listado de consejos
 @Override
-public void guardar(@Valid Consejo consejo) {
-	listaConsejos.getConsejos().add(consejo);
-	
+public void guardar(Consejo consejo) {
+	consejo.setEstado(true);
+	System.out.print(consejo.ttoString());
+	consejoRepository.save(consejo);
 }
 
 //Obtiene un consejo existente a partir de su descripción
 @Override
-public Consejo getBy(String descripcion) {
-	Consejo consejoEncontrado = null;
-	for(Consejo cons : listaConsejos.getConsejos()) {
-		if(cons.getDescripcion().equals(descripcion)) {
-			consejoEncontrado = cons;
-			break;
-		}
-	}
-	return consejoEncontrado;
-}
-
-//Modifica un consejo 
-@Override
-public void modificar(Consejo consejo) {
-	for(Consejo cons: listaConsejos.getConsejos()) { 
-		if(cons.getDescripcion().equals(consejo.getDescripcion())) {
-
-			cons.setCategoria(consejo.getCategoria());
-			cons.setDescripcion(consejo.getDescripcion());
-			cons.setLink(consejo.getLink());
-		}
-	}
-	
+public Consejo getBy(Long id) {
+	return consejoRepository.findById(id).get();
 }
 
 //Elimina un consejo especificado
 @Override
 public void eliminar(Consejo consejoEncontrado) {
-	listaConsejos.getConsejos().remove(consejoEncontrado);
-	
+	//Eliminación lógica (cambiando el valor de la variable estado a false), no se borra completamente de la tabla
+	consejoEncontrado.setEstado(false);
+	consejoRepository.save(consejoEncontrado);
+
 }
 
 //Devuelve un consejo nuevo
