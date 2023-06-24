@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import ar.edu.unju.fi.model.Servicio;
+import ar.edu.unju.fi.entity.Servicio;
 import ar.edu.unju.fi.service.IServicioService;
 import jakarta.validation.Valid;
 

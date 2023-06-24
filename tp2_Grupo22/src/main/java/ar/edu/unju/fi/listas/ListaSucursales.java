@@ -2,9 +2,11 @@ package ar.edu.unju.fi.listas;
 
 import java.util.List;
 import org.springframework.stereotype.Component;
+
+import ar.edu.unju.fi.entity.FormSucursal;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import ar.edu.unju.fi.model.FormSucursal;
 
 @Component
 public class ListaSucursales {
