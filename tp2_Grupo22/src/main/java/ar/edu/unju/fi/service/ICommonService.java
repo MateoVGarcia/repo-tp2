@@ -9,4 +9,6 @@ public interface ICommonService {
 	List<String>  getProvinciaCategoria();
 			
 	List<String> getProductoCategoria();
+	
+	List<String> getServicioCategoria();
 }

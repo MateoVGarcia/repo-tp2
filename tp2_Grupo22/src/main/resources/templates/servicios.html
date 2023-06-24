@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<title>Servicio de Paseos</title>
+	<title>Servicios</title>
 	<link rel="stylesheet" th:href="@{../css/estilos.css}">
 	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
@@ -20,6 +20,27 @@
 					
 				<!-- INICIO DE LA IMPLEMENTACION DEL FORMUALRIO -->
 				
+				<form class="form-inline d-flex mb-5" th:action="@{/servicios/listado}">
+					<div class="form-group mb-2">
+						<label> Filtrar: </label>
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+					     <select class="form-control" id="diaClave" name="diaClave" required>
+      						<option value="">Seleccione un día</option>
+      						<option value="lunes">Lunes</option>
+      						<option value="martes">Martes</option>
+      						<option value="miércoles">Miércoles</option>
+      						<option value="jueves">Jueves</option>
+      						<option value="viernes">Viernes</option>
+      						<option value="sábado">Sábado</option>
+      						<option value="domingo">Domingo</option>
+    					</select>		
+					</div>
+						<input type="submit" class="btn btn-primary mb-2" value="Buscar">
+							&nbsp;&nbsp;
+						<button type="button" class="btn btn-secondary mb-2" onclick="limpiarFiltro()">Limpiar</button>
+				</form>
+				
 				<div class="table-responsive-sm mb-3">
 	
 				<div class="mb-0">
@@ -32,6 +53,7 @@
 						<th>Dia</th>
 						<th>Paseador</th>
 						<th>Horario</th>
+						<th>Categoría</th>
 						<th>Acciones</th>
 					</tr>
 				   </thead>
@@ -41,9 +63,10 @@
 						<td th:text="${serv.dia}"></td>
 						<td th:text="${serv.paseador}"></td>
 						<td th:text="${serv.horainicio}+' a '+${serv.horafin}"></td>
+						<td th:text="${serv.categoria}"></td>
 						<td class="d-flex justify-content-center">
-	 						<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/modificar/{paseador}(paseador=${serv.paseador})}">Editar</a>
-        					<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/eliminar/{paseador}(paseador=${serv.paseador})}">Eliminar</a>
+	 						<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/modificar/{id}(id=${serv.id})}">Editar</a>
+        					<a class="btn btn-primary btn-sm mx-2" th:href="@{/servicios/eliminar/{id}(id=${serv.id})}">Eliminar</a>
         				</td>
         			</tr>
         			</tbody>
@@ -75,6 +98,13 @@
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
 	
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript">
+    		function limpiarFiltro() {
+ 			     document.getElementById("diaClave").value = "";
+    			 document.querySelector("form").submit();
+  			  }
+  </script>
 	
 </body>
 </html>
