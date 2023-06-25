@@ -26,7 +26,6 @@ public class SucursalController {
     Sucursal sucursal;
     
     @Autowired
-    @Qualifier("SucursalMySQL")
     private ISucursalService sucursalService;
     
     /**

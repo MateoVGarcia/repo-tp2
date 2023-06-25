@@ -37,7 +37,7 @@ public interface ISucursalService {
      *
      * @param sucursal la sucursal actualizada
      */
-    void modificar(@Valid Sucursal sucursal);
+    void modificar(Sucursal sucursal);
 
     /**
      * Elimina una sucursal.

@@ -49,9 +49,12 @@ public class Sucursal {
      * @param empleados   el número de empleados de la sucursal.
      * @param estado      el estado de borrado logico en la base de datos.
      */
+   public Sucursal() {
+	   
+   }
+    
     public Sucursal(Long id, String nombre, String direccion, String provincia, LocalDate fechaInicio, String email,
-            String telefono, int empleados, boolean estado) {
-        this.id = id;
+            String telefono, int empleados) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.provincia = provincia;
@@ -59,7 +62,6 @@ public class Sucursal {
         this.email = email;
         this.telefono = telefono;
         this.empleados = empleados;
-        this.estado = estado;
     }
 
     // Getters y setters

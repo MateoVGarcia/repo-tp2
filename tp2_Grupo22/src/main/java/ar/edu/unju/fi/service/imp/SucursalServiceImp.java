@@ -37,7 +37,7 @@ public class SucursalServiceImp implements ISucursalService {
      *
      * @param sucursal la sucursal a guardar
      */
-    public void guardar(@Valid Sucursal sucursal) {
+    public void guardar(Sucursal sucursal) {
     	sucursalRepository.save(sucursal);
     }
     
@@ -57,7 +57,7 @@ public class SucursalServiceImp implements ISucursalService {
      *
      * @param sucursal la sucursal actualizada
      */
-    public void modificar(@Valid Sucursal sucursal) {
+    public void modificar(Sucursal sucursal) {
     	sucursal.setEstado(true);
     	sucursalRepository.save(sucursal);
     }
