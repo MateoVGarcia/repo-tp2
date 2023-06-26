@@ -35,8 +35,7 @@ public class SucursalController {
      */
     @GetMapping("/listado")
     public String getListaSucursalesPage(Model model) {
-        List<Sucursal> listaSucursales = sucursalService.getLista();
-        model.addAttribute("sucursales", listaSucursales);
+        model.addAttribute("sucursales", sucursalService.getLista());
         return "sucursales";
     }
 
@@ -111,7 +110,7 @@ public class SucursalController {
     		return modelView;
             }
     	sucursalService.guardar(sucursal);
-    	modelView.addObject("consejos", sucursalService.getSucursal());
+    	modelView.addObject("consejos", sucursalService.getLista());
     	return modelView;
     }
 

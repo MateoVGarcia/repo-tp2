@@ -85,14 +85,14 @@
 					</div>
 					<br>
 
-					<dib class="mb-2">
+					<div class="mb-2">
 						<label for="fecha">Fecha de Inicio</label>
 						<input type="date" class="form-control" id="fecha" name="sucursal_fecha"
 							th:field="*{fechaInicio}">
 						<div class="text-danger" th:if="${#fields.hasErrors('fechaInicio')}" th:errors="*{fechaInicio}">
 						</div>
 
-					</dib>
+					</div>
 					<br>
 					<div class="mb-2">
 						<label for="email">Email</label>
