@@ -10,6 +10,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Component
 @Entity
@@ -19,19 +24,28 @@ public class Sucursal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "suc_id")
     private Long id;
-    @Column(name = "suc_nombre", length = 50, nullable = false)
+    @Column(name = "suc_nombre", length = 30, nullable = false)
+    @Size(max=30, message="El nombre puede contener solo hasta 30 caracteres.")
+    @NotEmpty(message="El nombre no puede estar vacío.")
     private String nombre;
-    @Column(name = "suc_direccion", nullable = false)
+    @Column(name = "suc_direccion",length=50, nullable = false)
+    @Size(max=50, message="La direccion puede contener solo hasta 50 caracteres.")
+    @NotEmpty(message="La direccion no puede estar vacía.")
     private String direccion;
     @Column(name = "suc_provincia", nullable = false)
+    @NotEmpty(message="Seleccione una provincia.")
     private String provincia;
     @Column(name = "suc_fechainicio", nullable = false)
+    @NotNull(message="Seleccione una fecha.")
     private LocalDate fechaInicio;
     @Column(name = "suc_email", nullable = false)
+    @NotEmpty(message="El email no puede quedar vacío.")
     private String email;
     @Column(name = "suc_telefono", nullable = false)
+    @Min(value=100000000, message="El numero de telefono debe tener 9 digitos.")
     private String telefono;
     @Column(name = "suc_empleados", nullable = false)
+    @Min(value=2, message="Deben haber al menos 2 empleados por sucursal.")
     private int empleados;
     @Column(name = "suc_estado")
     private boolean estado;

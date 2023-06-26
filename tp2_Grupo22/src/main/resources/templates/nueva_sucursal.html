@@ -103,7 +103,7 @@
 					<br>
 					<div class="mb-2">
 						<label for="telefono">Telefono</label>
-						<input type="text" class="form-control" id="telefono" name="sucursal_telefono"
+						<input type="number" class="form-control" id="telefono" name="sucursal_telefono"
 							th:field="*{telefono}">
 						<div class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
 
@@ -141,4 +141,4 @@
 	</script>
 </body>
 
-</h    
+</html>
