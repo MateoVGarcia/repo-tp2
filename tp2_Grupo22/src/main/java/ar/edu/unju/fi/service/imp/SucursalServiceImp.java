@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
  * Implementación de la interfaz ISucursalService.
  * Maneja las operaciones de gestión de sucursales.
  */
-@Service("SucursalMySQL")
+@Service("SucursalServiceImp")
 public class SucursalServiceImp implements ISucursalService {
 
     @Autowired

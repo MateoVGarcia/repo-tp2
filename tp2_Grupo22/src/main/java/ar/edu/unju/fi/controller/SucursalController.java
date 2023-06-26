@@ -3,7 +3,6 @@ package ar.edu.unju.fi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,8 +35,7 @@ public class SucursalController {
      */
     @GetMapping("/listado")
     public String getListaSucursalesPage(Model model) {
-        List<Sucursal> listaSucursales = sucursalService.getLista();
-        model.addAttribute("sucursales", listaSucursales);
+        model.addAttribute("sucursales", sucursalService.getLista());
         return "sucursales";
     }
 
@@ -103,9 +101,17 @@ public class SucursalController {
      * @return el nombre de la vista que redirige a la página de listado de sucursales.
      */
     @PostMapping("/modificar")
-    public String modificarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, Model model) {
-        sucursalService.modificar(sucursal);
-        return "redirect:/sucursales/listado";
+    public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, Model model) {
+    	ModelAndView modelView = new ModelAndView("sucursal");
+    	if (result.hasErrors()) {
+    		modelView.setViewName("nueva_sucursal");
+    		modelView.addObject("sucursal", sucursal);
+    		
+    		return modelView;
+            }
+    	sucursalService.guardar(sucursal);
+    	modelView.addObject("consejos", sucursalService.getLista());
+    	return modelView;
     }
 
     /**
