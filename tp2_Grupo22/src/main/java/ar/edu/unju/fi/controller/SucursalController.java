@@ -101,16 +101,17 @@ public class SucursalController {
      * @return el nombre de la vista que redirige a la página de listado de sucursales.
      */
     @PostMapping("/modificar")
-    public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result, Model model) {
-    	ModelAndView modelView = new ModelAndView("sucursal");
+    public ModelAndView modificarSucursal(@Valid @ModelAttribute("sucursal") Sucursal sucursal, BindingResult result) {
+    	ModelAndView modelView = new ModelAndView("sucursales");
     	if (result.hasErrors()) {
+    		boolean edicion = true;
     		modelView.setViewName("nueva_sucursal");
     		modelView.addObject("sucursal", sucursal);
-    		
+    		modelView.addObject("edicion", edicion);
     		return modelView;
             }
     	sucursalService.guardar(sucursal);
-    	modelView.addObject("consejos", sucursalService.getLista());
+    	modelView.addObject("sucursales", sucursalService.getLista());
     	return modelView;
     }
 

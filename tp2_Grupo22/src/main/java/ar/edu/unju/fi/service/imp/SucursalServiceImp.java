@@ -38,6 +38,7 @@ public class SucursalServiceImp implements ISucursalService {
      * @param sucursal la sucursal a guardar
      */
     public void guardar(Sucursal sucursal) {
+    	sucursal.setEstado(true);
     	sucursalRepository.save(sucursal);
     }
     
