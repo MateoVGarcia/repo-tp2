@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.listas.ListaConsejoCategoria;
 import ar.edu.unju.fi.listas.ListaProductoCategoria;
-import ar.edu.unju.fi.listas.ListaProvinciaCategoria;
+
 import ar.edu.unju.fi.listas.ListaServicioCategoria;
 import ar.edu.unju.fi.service.ICommonService;
 
@@ -29,24 +29,7 @@ public class CommonServiceImp implements ICommonService {
         return listaConsejoCategoria.getConsejoCategoria();
     }
 
-    @Autowired
-    ListaProvinciaCategoria listaProvinciaCategoria;
 
-    /**
-     * Obtiene la lista de categorías de provincia.
-     *
-     * @return la lista de categorías de provincia.
-     */
-    @Override
-    public List<String> getProvinciaCategoria() {
-        return listaProvinciaCategoria.getProvinciaCategoria();
-    }
-    /**
-     * Obtiene la lista de categorías de productos.
-     *
-     * @return la lista de categorías de productos.
-     */
-    
     @Autowired
     ListaProductoCategoria listaProductoCategoria;
     
@@ -68,6 +51,12 @@ public class CommonServiceImp implements ICommonService {
 	@Override
 	public List<String> getServicioCategoria(){
 		return listaServicioCategoria.getServicioCategoria();
+	}
+
+	@Override
+	public List<String> getProvinciaCategoria() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
