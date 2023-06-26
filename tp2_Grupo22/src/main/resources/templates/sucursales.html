@@ -45,8 +45,8 @@
 									<td th:text="${sucu.telefono}" class="th"></td>
 									<td th:text="${sucu.empleados}" class="th"></td>
 									<td class="table-active">
-										<a th:href="@{/sucursales/modificar/}+${sucu.nombre}" >Editar</a>
-										<a th:href="@{/sucursales/eliminar/}+${sucu.nombre}">Eliminar</a>
+										<a th:href="@{/sucursales/modificar/}+${sucu.id}" >Editar</a>
+										<a th:href="@{/sucursales/eliminar/}+${sucu.id}">Eliminar</a>
 									</td>
 							</tr>
 					</table>
@@ -56,4 +56,4 @@
 		<footer th:replace="~{layouts/footer :: footer}"></footer> 
 	</div>
 </body>
-</html> 
+</html>  

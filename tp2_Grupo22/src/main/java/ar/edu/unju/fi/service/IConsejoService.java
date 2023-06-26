@@ -3,8 +3,8 @@ package ar.edu.unju.fi.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
+import ar.edu.unju.fi.entity.*;
 import ar.edu.unju.fi.listas.*;
-import ar.edu.unju.fi.model.*;
 import jakarta.validation.Valid;
 
 
@@ -14,11 +14,9 @@ public interface IConsejoService {
 	//Listado de Consejos
 	List<Consejo> getConsejos();
 	//Guardado de consejos
-	void guardar(@Valid Consejo consejo);
+	void guardar(Consejo consejo);
 	//Obtener un consejo segun su descripcion
-	Consejo getBy(String descripcion);
-	//Modificar un consejo
-	void modificar(Consejo consejo);
+	Consejo getBy(Long id);
 	//Eliminar un consejo
 	void eliminar(Consejo consejoEncontrado);
 	//Generar un nuevo consejo

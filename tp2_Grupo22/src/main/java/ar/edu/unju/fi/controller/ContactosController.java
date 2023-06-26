@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.FormContacto;
+import ar.edu.unju.fi.entity.FormContacto;
 
 @Controller
 public class ContactosController {

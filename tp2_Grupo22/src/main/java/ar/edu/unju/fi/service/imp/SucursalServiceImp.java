@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.listas.ListaSucursales;
-import ar.edu.unju.fi.model.FormSucursal;
+import ar.edu.unju.fi.entity.Sucursal;
+
+import ar.edu.unju.fi.repository.ISucursalRepository;
 import ar.edu.unju.fi.service.ISucursalService;
 import jakarta.validation.Valid;
 
@@ -14,21 +15,21 @@ import jakarta.validation.Valid;
  * Implementación de la interfaz ISucursalService.
  * Maneja las operaciones de gestión de sucursales.
  */
-@Service
+@Service("SucursalServiceImp")
 public class SucursalServiceImp implements ISucursalService {
 
     @Autowired
-    private ListaSucursales listaSucursales;
+    private ISucursalRepository sucursalRepository;
     @Autowired
-    private FormSucursal sucursal;
+    private Sucursal sucursal;
     
     /**
      * Obtiene una lista de todas las sucursales.
      *
      * @return la lista de sucursales
      */
-    public List<FormSucursal> getLista() {
-        return listaSucursales.getSucursales();
+    public List<Sucursal> getLista() {
+        return sucursalRepository.findByEstado(true);
     }
     
     /**
@@ -36,8 +37,9 @@ public class SucursalServiceImp implements ISucursalService {
      *
      * @param sucursal la sucursal a guardar
      */
-    public void guardar(@Valid FormSucursal sucursal) {
-        listaSucursales.getSucursales().add(sucursal);
+    public void guardar(Sucursal sucursal) {
+    	sucursal.setEstado(true);
+    	sucursalRepository.save(sucursal);
     }
     
     /**
@@ -46,15 +48,9 @@ public class SucursalServiceImp implements ISucursalService {
      * @param nombre el nombre de la sucursal
      * @return la sucursal con el nombre especificado
      */
-    public FormSucursal getBy(String nombre) {
-    	FormSucursal sucursalEncontrada = null;
-        for (FormSucursal sucu : listaSucursales.getSucursales()) {
-            if (sucu.getNombre().equals(nombre)) {
-                sucursalEncontrada = sucu;
-                break;
-            }           
-        }
-        return sucursalEncontrada;
+    public Sucursal getBy(Long id) {
+    	
+        return sucursalRepository.findById(id).get();
     }
     
     /**
@@ -62,17 +58,9 @@ public class SucursalServiceImp implements ISucursalService {
      *
      * @param sucursal la sucursal actualizada
      */
-    public void modificar(@Valid FormSucursal sucursal) {
-        for (FormSucursal sucu : listaSucursales.getSucursales()) {
-            if (sucu.getNombre().equals(sucursal.getNombre())) {
-            	sucu.setDireccion(sucursal.getDireccion());
-            	sucu.setProvincia(sucursal.getProvincia());
-            	sucu.setFechaInicio(sucursal.getFechaInicio());
-                sucu.setEmail(sucursal.getEmail());
-                sucu.setTelefono(sucursal.getTelefono());
-                sucu.setEmpleados(sucursal.getEmpleados());
-            }
-        }
+    public void modificar(Sucursal sucursal) {
+    	sucursal.setEstado(true);
+    	sucursalRepository.save(sucursal);
     }
     
     /**
@@ -80,8 +68,9 @@ public class SucursalServiceImp implements ISucursalService {
      *
      * @param sucursal la sucursal a eliminar
      */
-    public void eliminar(FormSucursal sucursal) {
-        listaSucursales.getSucursales().remove(sucursal);
+    public void eliminar(Sucursal sucursal) {
+       sucursal.setEstado(false); 
+       sucursalRepository.save(sucursal);
     }
     
     /**
@@ -90,7 +79,7 @@ public class SucursalServiceImp implements ISucursalService {
      * @return la sucursal actual
      */
     @Override
-    public FormSucursal getSucursal() {
+    public Sucursal getSucursal() {
         return sucursal;
     }
 }
